@@ -69,3 +69,47 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+.home-body {
+
+}
+
+.home-body .home-header {
+    margin: 10px 5px;
+    padding: 5px 1rem
+}
+
+.home-body .home-balance {
+    margin: 10px 5px;
+    padding: 5px 1rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home-body .home-content {
+    margin: 10px auto;
+    padding: 5px 1rem
+}
+
+.menu-item-select {
+    display: flex;
+    box-shadow: 1px 2px 3px 2px rgb(0 0 0 / 35%);
+    border-radius: 5px;
+    margin: 5px 0.5rem;
+
+    padding-right: 1rem;
+    min-width: 220px;
+    max-width: 350px;
+    overflow: hidden;
+}
+
+.menu-item-select img {
+    margin-right: 0.5rem;
+    object-fit: cover;
+}
+
+.menu-item-select p {
+    margin: auto 5px;
+}

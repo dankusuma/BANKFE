@@ -8,4 +8,13 @@
     <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Content\" />
+    <Folder Include="Image\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\temp_img.jpg" />
+  </ItemGroup>
+
 </Project>

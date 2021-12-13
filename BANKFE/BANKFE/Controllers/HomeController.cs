@@ -20,7 +20,17 @@ namespace BANKFE.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var items = new List<ButtonItemModel>()
+            {
+                new ButtonItemModel(){Desc="Check History Transaction"},
+                new ButtonItemModel(){Desc="Top up eWallet"},
+                new ButtonItemModel(){Desc="Pay Bills!"},
+                new ButtonItemModel(){Desc="Transfer to other"},
+                new ButtonItemModel(){Desc="Create Saving Planned account"},
+                new ButtonItemModel(){Desc="Create Deposito Account"}
+            };
+
+            return View(items);
         }
 
         public IActionResult Privacy()

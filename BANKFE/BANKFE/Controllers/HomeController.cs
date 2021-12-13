@@ -33,6 +33,11 @@ namespace BANKFE.Controllers
             return View(items);
         }
 
+        public IActionResult NotReadyPage()
+        {
+            return View("NotReadyPage");
+        }
+
         public IActionResult Privacy()
         {
             return View();

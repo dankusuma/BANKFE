@@ -104,10 +104,12 @@ body {
     box-shadow: 1px 2px 3px 2px rgb(0 0 0 / 35%);
     border-radius: 5px;
     margin: 5px 0.5rem;
-
     min-width: 220px;
     padding-right: 1rem;
     overflow: hidden;
+
+    border: none;
+    background-color: #efefef;
 }
 
 .menu-item-select img {

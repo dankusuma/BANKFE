@@ -12,6 +12,7 @@
     <Folder Include="wwwroot\fonts\" />
     <Folder Include="wwwroot\lib\twitter-bootstrap-wizard\examples\" />
     <Folder Include="wwwroot\scss\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 
 namespace BANKFE.Models
 {
-    public class User
+    public class User : BaseEntity
     {
         public string USERNAME { get; set; } //
         public string PASSWORD { get; set; } //

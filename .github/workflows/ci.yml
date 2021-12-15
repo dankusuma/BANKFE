@@ -1,9 +1,8 @@
 name: .NET 5 CI
 on:
-  workflow_run:
-    workflows: ["Build"]
-    types:
-      - completed
+  push:
+    branches:
+      - develop # or the name of your main branch
 
 jobs:
   build:

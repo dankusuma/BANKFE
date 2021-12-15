@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body>
-    <partial name="_Header" />
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+<body class="row">
+    <partial name="UI/_Sidebar" />
+    <div class="col p-0">
+        <partial name="UI/_Header" />
+        <div class="container">
+            <main role="main" class="pb-1">
+                @RenderBody()
+            </main>
+        </div>
+        <partial name="UI/_Footer" />
     </div>
-
-    <partial name="_Footer" />
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

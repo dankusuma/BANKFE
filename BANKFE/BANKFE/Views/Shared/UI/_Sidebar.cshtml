@@ -8,26 +8,32 @@
         text-decoration: none;
         color: rgba(245, 245, 245, 1);
     }
+
+    .img-sidebar {
+        height: 60px;
+        width: auto;
+
+        margin-right: 1rem;
+        padding: 5px 0;
+    }
 </style>
 
 <nav id="sidebar" class="col-md-2 d-none d-md-block bg-info sidebar-sticky fixed-right min-vh-100">
     <div class="sidebar-sticky">
-        <div class="row">
-            <div class="mb-2 col">
-                <img src="" alt="temp icon" class="col" />
-                <h3 class="col">Bank App</h3>
-                <i class="bi bi-three-dots-vertical col"></i>
+            <div class="flex-row justify-content-between m-2 text-light">
+                <img src="~/images/temp_img.jpg" alt="temp icon" class="col img-sidebar" />
+                <label class="text-weight-bolder">Bank App</label>
+                <i class="bi bi-three-dots-vertical float-right pt-3"></i>
             </div>
-        </div>
         <hr />
 
         <div class="mb-2 m-lg-2">
             <ul class="list-group">
-                <li><a href="#" class="nav-item-link"><i class="bi bi-house-door-fill mx-3"></i>Dashboard</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 1</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 2</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 3</a></li>
-                <li><a href="#" class="nav-item-link"><i class="bi bi-gear-fill mx-3"></i>Settings</a></li>
+                <li class="mb-3"><a href="#" class="nav-item-link"><i class="bi bi-house-door-fill mx-3"></i>Dashboard</a></li>
+                <li class="mb-3"><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 1</a></li>
+                <li class="mb-3"><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 2</a></li>
+                <li class="mb-3"><a href="#" class="nav-item-link"><i class="bi bi-journal mx-3"></i>Menu 3</a></li>
+                <li class="mb-3"><a href="#" class="nav-item-link"><i class="bi bi-gear-fill mx-3"></i>Settings</a></li>
             </ul>
         </div>
     </div>

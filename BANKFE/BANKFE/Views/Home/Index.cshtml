@@ -12,8 +12,8 @@
     </div>
 
     <div class="card-deck">
-        <partial name="Items/_AccountItem" />
-        <partial name="Items/_AccountItem" />
+        <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };'/>
+        <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };' />
     </div>
 
     <div style="width: 100%">

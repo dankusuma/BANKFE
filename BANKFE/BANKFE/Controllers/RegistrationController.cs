@@ -22,9 +22,10 @@ namespace BANKFE.Controllers
         }
 
         [HttpPost]
-        public IActionResult SubmitRegistration([FromBody] Registration model)
+        public IActionResult SubmitRegistration([FromBody] Registration model, [FromBody] Upload upload)
         {
             var result = _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
+            var result2 = _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", upload); // FE kirim string foto / video yang diconvert jadi Base64 string
             return Ok(result.Result);
         }
     }

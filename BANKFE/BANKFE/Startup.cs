@@ -30,10 +30,11 @@ namespace BANKFE
             {
                 options.KnownProxies.Add(IPAddress.Parse("10.0.0.100"));
             });
+
             services.AddControllersWithViews();
             services.AddHttpClient<HttpService>();
             services.AddHttpClient<HttpService>().SetHandlerLifetime(TimeSpan.FromMinutes(1))
-           .AddPolicyHandler(HttpPolicy.GetRetryPolicy()).AddPolicyHandler(HttpPolicy.GetCircuitBreakerPolicy()); ;
+                .AddPolicyHandler(HttpPolicy.GetRetryPolicy()).AddPolicyHandler(HttpPolicy.GetCircuitBreakerPolicy()); ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

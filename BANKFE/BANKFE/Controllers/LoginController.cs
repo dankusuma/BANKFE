@@ -2,6 +2,7 @@
 using BANKFE.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace BANKFE.Controllers
 {
@@ -21,11 +22,10 @@ namespace BANKFE.Controllers
         }
 
         [HttpPost]
-        public IActionResult DoLogin([FromBody] Login login)
+        public async Task<ActionResult> DoLogin([FromBody] Login login)
         {
-            var result = _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
-            return Ok(result.Result);
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
+            return Ok(!string.IsNullOrWhiteSpace(result));
         }
-
     }
 }

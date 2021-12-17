@@ -1,4 +1,5 @@
-﻿
+﻿@model ErrorViewModel
+
 @*Paste this to the main page for calling this modal (I think it's better to not put this together in same file)
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generalModal">
     Call Modal
@@ -16,11 +17,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fringilla imperdiet sem ut scelerisque. Proin quis mauris mi. Vestibulum sapien.
+                <h4 class="align-self-center alert-warning">Error @Model.RequestId</h4>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                @*<button type="button" class="btn btn-primary">Save changes</button>*@
             </div>
         </div>
     </div>

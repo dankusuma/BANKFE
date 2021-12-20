@@ -57,26 +57,33 @@
     </div>
 
 
-            $.ajax({
-                type: 'POST',
-      url: '/Login/DoLogin',
-      data: JSON.stringify(postdata),
-                contentType: 'application/json; charset=utf-8',
-                datatype: 'json',
-      success: function(data){
-        alert('success');
-      },
-      error: function(data){
-        alert('failure');
-  }
-});
+    @section scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#signinsubmit').click(function () {
 
-});
-});
+                    var username = $('#inputEmail').val();
+                    var password = $('#inputPassword').val();
+                    var postdata = { UserName: username, Password: password }
 
 
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Login/DoLogin',
+                        data: JSON.stringify(postdata),
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (data) {
+                            alert('success');
+                        },
+                        error: function (data) {
+                            alert('failure');
+                        }
+                    });
 
-</script>
+                });
+            });
+        </script>
     }
 </body>
 </html>

@@ -1,4 +1,5 @@
 ﻿using BANKFE.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -18,9 +19,15 @@ namespace BANKFE.Controllers
             _logger = logger;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult NotReadyPage()
+        {
+            return View("NotReady");
         }
 
         public IActionResult Privacy()

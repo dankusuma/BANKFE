@@ -169,7 +169,16 @@
                                                         <div class="mb-2">
                                                             <label class="form-label" for="selfie-id">Selfie with Id Card</label>
                                                             <div>
-                                                                
+                                                                <video id="frame-foto" autoplay playsinline></video>
+                                                                <canvas id="canvas-foto" style="display: none"></canvas>
+                                                                <div class="mt-2 text-center">
+                                                                    <button id="start-foto" class="btn btn-primary" style="width: 100%;">
+                                                                        Open Camera
+                                                                    </button>
+                                                                    <button id="take-foto" class="btn btn-primary" style="display: none; width: 100%;">
+                                                                        Ambil Gambar
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -181,27 +190,43 @@
                                                     <div class="col-md-8">
                                                         <div class="mb-2">
                                                             <label class="form-label" for="selfie-id">Video Pernyataan</label>
+                                                            <p>Ucapkan kalimat berikut:</p>
+                                                            <p>"Saya [Nama], dengan sadar bersedia membuat rekening di Bank Ini"</p>
                                                             <div>
-                                                                
+                                                                <video id="frame-video" playsinline autoplay muted></video>
+                                                                <video id="frame-recorded" style="display: none;" playsinline></video>
+                                                                <div class="mt-2 text-center">
+                                                                    <button id="start-video" class="btn btn-primary" style="width: 100%;">
+                                                                        Open Camera
+                                                                    </button>
+                                                                    <button id="start-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                        Start Record
+                                                                    </button>
+                                                                    <button id="stop-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                        Stop Record
+                                                                    </button>
+                                                                    <button id="play-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                        Play
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <ul class="pager wizard twitter-bs-wizard-pager-link" style="padding-left: 0px;">
+                                                <li class="previous"><a href="javascript: void(0);">Previous</a></li>
+                                                <li class="next"><a href="javascript: void(0);">Next</a></li>
+                                                <li class="finish"><a id="submit-form" href="javascript: void(0);">Submit</a></li>
+                                            </ul>
                                         </div>
-                                        <ul class="pager wizard twitter-bs-wizard-pager-link" style="padding-left: 0px;">
-                                            <li class="previous"><a href="javascript: void(0);">Previous</a></li>
-                                            <li class="next"><a href="javascript: void(0);">Next</a></li>
-                                            <li class="finish"><a id="submit-form" href="javascript: void(0);">Submit</a></li>
-                                        </ul>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <!-- end row -->
+                </div>
             </div>
         </div>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -210,6 +235,7 @@
         
         <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
         <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 
         <script src="~/js/pages/form-wizard.init.js"></script>
         <script src="~/js/site.js"></script>

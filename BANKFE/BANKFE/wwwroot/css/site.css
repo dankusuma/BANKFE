@@ -122,6 +122,13 @@ for details on configuring this project to bundle and minify static web assets. 
     min-height: 262px;
 }
 
+video, canvas {
+    border: 2px solid rgba(255, 255, 255, 1);
+    background: #263238;
+    height: 198px;
+    width: 100%;
+}
+
 /* Registration Style */
 
 a.navbar-brand {

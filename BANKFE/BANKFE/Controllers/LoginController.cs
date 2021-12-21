@@ -50,7 +50,8 @@ namespace BANKFE.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties()
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes((token.ValidTo - token.ValidFrom).TotalMinutes),
-                IsPersistent = true
+                
+                IsPersistent = false
             }) ;
             return Ok();
         }

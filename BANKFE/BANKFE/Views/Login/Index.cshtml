@@ -29,7 +29,7 @@
        </div>
       <div class="mb-2 row">
       <label class="form-label" for="inputEmail">Username</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+      <input type="text" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
       </div>
       <div class="mb-2 row">
       <label class="form-label" for="inputPassword">Password</label>
@@ -39,7 +39,7 @@
         <a href="#" class="link-info ">Forget Password?</a>
        </div>
        <div class="mb-2 row">
-      <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Sign in</button>
+      <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Login</button>
       </div>
       <div class="row justify-content-center pt-4 pb-5">
         <label>Don't have access?&nbsp;</label><a href="#" class="link-info"> Register now</a>
@@ -73,6 +73,8 @@
 
 
     $( document ).ready(function() {
+    
+
    $('#signinsubmit').click(function(){
 
        var username = $('#inputEmail').val();
@@ -80,8 +82,13 @@
        var returnurl = getParameterByName('ReturnUrl');
        var postdata = { UserName: username,Password: password,ReturnUrl: returnurl}
 
-
-            $.ajax({
+       if(!document.getElementById('inputEmail').validity.valid||!document.getElementById('inputPassword').validity.valid)
+       {
+           alert("Pelease Fill Username and Password");
+       }
+       else
+       {
+           $.ajax({
                 type: 'POST',
       url: '/Login/DoLogin',
       data: JSON.stringify(postdata),
@@ -95,6 +102,9 @@
   }
 
 });
+       }
+
+            
 
 });
 });

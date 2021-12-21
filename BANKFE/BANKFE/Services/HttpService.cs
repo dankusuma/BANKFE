@@ -26,19 +26,15 @@ namespace BANKFE.Services
             Console.WriteLine("test");
             return await ress.Content.ReadAsStringAsync();
         }
-        public async Task<ResultModel> PostData(string url, object data)
+        public async Task<HttpResponseMessage> PostData(string url, object data)
         {
-            ResultModel result = new ResultModel();
+
             var httpress = await _httpClient.PostAsync(url, new StringContent(
             JsonSerializer.Serialize(data),
             Encoding.UTF8,
             Application.Json));
 
-            result.Code = ((int)httpress.StatusCode);
-
-            result.Message = await httpress.Content.ReadAsStringAsync();
-
-            return result;
+            return httpress;
 
 
 

@@ -12,36 +12,37 @@
     </div>
 
     <div class="card-deck">
-        <partial name="Items/_AccountItem" />
-        <partial name="Items/_AccountItem" />
+        <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };' />
+        <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };' />
     </div>
 
     <div style="width: 100%">
         <h3>Transaksi</h3>
 
         <table class="table table-sm table-borderless">
-            <thead class="thead text-sm">
+            <thead class="thead text-sm mb-5">
                 <tr>
-                    <th><small>Tanggal</small></th>
-                    <th><small>Tipe Transaksi</small></th>
-                    <th><small>Deskripsi</small></th>
-                    <th><small>Nominal</small></th>
+                    <th>Tanggal</th>
+                    <th>Tipe Transaksi</th>
+                    <th>Deskripsi</th>
+                    <th>Nominal</th>
                 </tr>
             </thead>
 
             <tbody class="table-light">
-                <tr>
-                    <td><small>@DateTime.Now</small></td>
-                    <td><small>Top up</small></td>
-                    <td><small>Top up no id 123445678946</small></td>
-                    <td><small>250.000,00</small></td>
+                <tr class="my-2">
+                    <td>@DateTime.Now</td>
+                    <td>Top up</td>
+                    <td>Top up no id 123445678946</td>
+                    <td>250.000,00</td>
                 </tr>
-                <tr>
-                    <td><small>@DateTime.Today</small></td>
-                    <td><small>Top up</small></td>
-                    <td><small>Top up no id 123445678946</small></td>
-                    <td><small>500.000,00</small></td>
+                <tr class="my-2">
+                    <td>@DateTime.Today</td>
+                    <td>Top up</td>
+                    <td>Top up no id 123445678946</td>
+                    <td>500.000,00</td>
                 </tr>
             </tbody>
         </table>
     </div>
+</div>

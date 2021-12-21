@@ -1,4 +1,5 @@
 ﻿using BANKFE.Interface;
+using BANKFE.Models;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -25,12 +26,22 @@ namespace BANKFE.Services
             Console.WriteLine("test");
             return await ress.Content.ReadAsStringAsync();
         }
-        public async Task<string> PostData(string url, object data)
+        public async Task<ResultModel> PostData(string url, object data)
         {
-            return await _httpClient.PostAsync(url, new StringContent(
+            ResultModel result = new ResultModel();
+            var httpress = await _httpClient.PostAsync(url, new StringContent(
             JsonSerializer.Serialize(data),
             Encoding.UTF8,
-            Application.Json)).Result.Content.ReadAsStringAsync();
+            Application.Json));
+
+            result.Code = ((int)httpress.StatusCode);
+
+            result.Message = await httpress.Content.ReadAsStringAsync();
+
+            return result;
+
+
+
         }
     }
 }

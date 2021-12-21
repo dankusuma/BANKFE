@@ -1,24 +1,26 @@
-﻿namespace BANKFE.Models
+﻿using System;
+
+namespace BANKFE.Models
 {
     public class Registration
     {
-        public string ID { get; set; }
-        public string NIK { get; set; }
-        public string NAME { get; set; }
-        public string BIRTH_PLACE { get; set; }
-        public string BIRTH_DATE { get; set; }
-        public string MOTHER_MAIDEN_NAME { get; set; }
-        public string ADDRESS { get; set; }
-        public string KELURAHAN { get; set; }
-        public string KECAMATAN { get; set; }
-        public string KABUPATEN_KOTA { get; set; }
-        public string PROVINCE { get; set; }
-        public char GENDER { get; set; }
-        public string MARITAL_STATUS { get; set; }
-        public string JOB { get; set; }
-        public string EMAIL { get; set; }
-        public string USERNAME { get; set; }
-        public string PASSWORD { get; set; }
-        public string PHONE { get; set; }        
+        public int Id { get; set; }
+        public string Nik { get; set; }
+        public string Nama { get; set; }
+        public string TempatLahir { get; set; }
+        public DateTime TanggalLahir { get; set; }
+        public string NamaIbu { get; set; }
+        public string Alamat { get; set; }
+        public string Kelurahan { get; set; }
+        public string Kecamatan { get; set; }
+        public string Kabupaten { get; set; }
+        public string Provinsi { get; set; }
+        public string Kelamin { get; set; }
+        public string StatusPernikahan { get; set; }
+        public string Pekerjaan { get; set; }
+        public string Email { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Telepon { get; set; }
     }
 }

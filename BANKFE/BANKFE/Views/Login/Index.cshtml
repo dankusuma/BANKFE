@@ -1,21 +1,73 @@
-﻿    <div>
-      <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
-    </div>
+﻿@{
+  Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
+        <link rel="stylesheet" href="~/css/site.css" />
+        </head>
+        <body class="bg-pattern">
 
-    @section scripts{
-<script type="text/javascript">
+            <div class="bg-overlay"></div>
+        <div class="account-pages my-5 pt-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-5 col-lg-6 col-md-4">
+                        <div class="card">
+                            <div class="card-body py-3 px-5">
+                                <div class="">
+
+       <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
+      <div class="mb-2 row">
+       <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+       </div>
+      <div class="mb-2 row">
+      <label class="form-label" for="inputEmail">Username</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Username" required="" autofocus="">
+      </div>
+      <div class="mb-2 row">
+      <label class="form-label" for="inputPassword">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="">
+       </div>
+      <div class="mb-2 row justify-content-end pt-2 pb-2">
+        <a href="#" class="link-info ">Forget Password?</a>
+       </div>
+       <div class="mb-2 row">
+      <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Sign in</button>
+      </div>
+      <div class="row justify-content-center pt-4 pb-5">
+        <label>Don't have access?&nbsp;</label><a href="#" class="link-info"> Register now</a>
+       </div>
+    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+
+
+
+
+
+             <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/lib/node-waves/waves.min.js"></script>
+        
+        <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+        <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+
+        <script src="~/js/pages/form-wizard.init.js"></script>
+        <script src="~/js/site.js"></script>
+
+     <script type="text/javascript">
 
 
 
@@ -25,7 +77,8 @@
 
        var username = $('#inputEmail').val();
        var password = $('#inputPassword').val();
-       var postdata = { UserName: username,Password: password}
+       var returnurl = getParameterByName('ReturnUrl');
+       var postdata = { UserName: username,Password: password,ReturnUrl: returnurl}
 
 
             $.ajax({
@@ -35,17 +88,32 @@
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
       success: function(data){
-        alert('success');
+        window.location.href = returnurl;
       },
       error: function(data){
-        alert('failure');
+        alert(data.responseText);
   }
+
 });
 
 });
 });
 
+
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
 
 
 </script>
-    }
+
+
+    </body>
+
+
+    </html>

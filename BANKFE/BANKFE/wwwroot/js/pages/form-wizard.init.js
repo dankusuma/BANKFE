@@ -17,7 +17,7 @@
     });
 
     //Take Picture
-    const constraintsFoto= { audio: false, video: true };
+    const constraintsFoto = { audio: false, video: true };
     const frameFoto = document.querySelector('#frame-foto');
     const canvasFoto = window.canvas = document.querySelector('#canvas-foto');
     const startPic = document.querySelector('#start-foto');
@@ -116,6 +116,7 @@
         frameRecorded.src = window.URL.createObjectURL(superBuffer);
         frameRecorded.controls = true;
         frameRecorded.play();
+        console.log(frameRecorded.src);
     }
 
     function handleSuccessVideo(stream) {
@@ -147,7 +148,22 @@
         await initVideo(constraints);
     }
 
-    $("#submit-form").click(function () {
+    async function blobToBase64() {
+        let blob = new Blob(recordedBlobs, { type: 'video/mp4' });
+        return new Promise((resolve, _) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.readAsDataURL(blob);
+        });
+    }
+
+    const submitButton = document.querySelector('#submit-form');
+    submitButton.onclick = async function () {
+        let videoBase64 = await blobToBase64();
+        let selfieBase64 = $('#canvas-foto')[0].toDataURL("image/jpeg");
+        let videoString = videoBase64.split(',')[1];
+        let fotoString = selfieBase64.split(',')[1];
+
         var nik = $('#nik').val();
         var name = $('#name').val();
         var tmpLahir = $('#lahir').val();
@@ -166,28 +182,33 @@
         var username = $('#username').val();
         var password = $('#password').val();
         var handphone = $('#handphone').val();
-        var selfieId = $('#canvas-foto').val();
-        var videoPernyataan = new Blob(recordedBlobs, { type: mimeVideo });
 
         var postData = {
-            ID: 0,
-            NIK: nik,
-            NAME: name,
-            BIRTH_PLACE: tmpLahir,
-            BIRTH_DATE: tglLahir,
-            MOTHER_MAIDEN_NAME: ibuKandung,
-            ADDRESS: alamat,
-            KELURAHAN: kelurahan,
-            KECAMATAN: kecamatan,
-            KABUPATEN_KOTA: kabupaten,
-            PROVINCE: provinsi,
-            GENDER: kelamin,
-            MARITAL_STATUS: marital,
-            JOB: pekerjaan,
-            EMAIL: email,
-            USERNAME: username,
-            PASSWORD: password,
-            PHONE: handphone,
+            Id: 0,
+            Nik: nik,
+            Nama: name,
+            TempatLahir: tmpLahir,
+            TanggalLahir: tglLahir,
+            NamaIbuKandung: ibuKandung,
+            Alamat: alamat,
+            Kelurahan: kelurahan,
+            Kecamatan: kecamatan,
+            Kabupaten: kabupaten,
+            Provinsi: provinsi,
+            Kelamin: kelamin,
+            StatusPernikahan: marital,
+            Pekerjaan: pekerjaan,
+            Email: email,
+            Username: username,
+            Password: password,
+            Telepon: handphone
+        };
+
+        var postUpload = {
+            photoName: nik + "_" + name,
+            stringPhoto: fotoString,
+            videoName: nik + "_" + name,
+            stringVideo: videoString
         };
 
         $.ajax({
@@ -197,10 +218,25 @@
             contentType: 'application/json; charset=utf-8',
             datatype: 'json',
             success: function (data) {
-                alert('success');
-            }, error: function (data) {
-                alert('failure');
+                console.log("Success");
+            },
+            error: function (data) {
+                alert(data.responseText);
             }
         });
-    });
+
+        $.ajax({
+            type: 'POST',
+            url: '/Registration/SubmitUpload',
+            data: JSON.stringify(postUpload),
+            contentType: 'application/json; charset=utf-8',
+            datatype: 'json',
+            success: function (data) {
+                console.log("Success");
+            },
+            error: function (data) {
+                alert(data.responseText);
+            }
+        });
+    }
 });

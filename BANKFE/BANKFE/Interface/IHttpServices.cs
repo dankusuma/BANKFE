@@ -7,6 +7,6 @@ namespace BANKFE.Interface
     public interface IHttpServices
     {
         public Task<string> GetData(string url);
-        public Task<ResultModel> PostData(string url, object data);
+        public Task<HttpResponseMessage> PostData(string url, object data);
     }
 }

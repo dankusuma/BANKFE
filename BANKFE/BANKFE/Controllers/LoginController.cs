@@ -31,16 +31,16 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> DoLoginAsync([FromBody] Login login)
         {
-            var result = _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
-            if(result.Result.Code != 200)
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
+            if((int)result.StatusCode != 200)
             {
-                return Unauthorized(result.Result.Message);
+                return Unauthorized(result.Content.ReadAsStringAsync());
             }
-            var token = new JwtSecurityToken(jwtEncodedString: result.Result.Message);
+            var token = new JwtSecurityToken(jwtEncodedString: result.Content.ReadAsStringAsync().Result);
             var claims = new List<Claim>() {
                         new Claim(ClaimTypes.Name,token.Claims.First(c => c.Type == ClaimTypes.Name).Value),
                         new Claim(ClaimTypes.Role, token.Claims.First(c => c.Type == ClaimTypes.Role).Value),
-                        new Claim(ClaimTypes.Authentication, result.Result.Message)
+                        new Claim(ClaimTypes.Authentication, result.Content.ReadAsStringAsync().Result)
 
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

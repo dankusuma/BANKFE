@@ -34,7 +34,7 @@ namespace BANKFE.Controllers
             var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
             if((int)result.StatusCode != 200)
             {
-                return Unauthorized(result.Content.ReadAsStringAsync());
+                return Unauthorized(result.Content.ReadAsStringAsync().Result);
             }
             var token = new JwtSecurityToken(jwtEncodedString: result.Content.ReadAsStringAsync().Result);
             var claims = new List<Claim>() {

@@ -18,6 +18,7 @@
 
     //Take Picture
     const constraintsFoto = { audio: false, video: true };
+
     const frameFoto = document.querySelector('#frame-foto');
     const canvasFoto = window.canvas = document.querySelector('#canvas-foto');
     const startPic = document.querySelector('#start-foto');
@@ -116,7 +117,6 @@
         frameRecorded.src = window.URL.createObjectURL(superBuffer);
         frameRecorded.controls = true;
         frameRecorded.play();
-        console.log(frameRecorded.src);
     }
 
     function handleSuccessVideo(stream) {
@@ -163,7 +163,7 @@
         let selfieBase64 = $('#canvas-foto')[0].toDataURL("image/jpeg");
         let videoString = videoBase64.split(',')[1];
         let fotoString = selfieBase64.split(',')[1];
-
+      
         var nik = $('#nik').val();
         var name = $('#name').val();
         var tmpLahir = $('#lahir').val();
@@ -182,6 +182,8 @@
         var username = $('#username').val();
         var password = $('#password').val();
         var handphone = $('#handphone').val();
+        var selfieId = $('#canvas-foto').val();
+        var videoPernyataan = new Blob(recordedBlobs, { type: mimeVideo });
 
         var postData = {
             Id: 0,

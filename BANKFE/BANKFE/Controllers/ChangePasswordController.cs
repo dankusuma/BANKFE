@@ -1,4 +1,5 @@
-﻿using BANKFE.Services;
+﻿using BANKFE.Models;
+using BANKFE.Services;
 using BANKFE.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -33,12 +34,13 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> DoChangePassword([FromBody] ChangePasswordViewModel param)
         {
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", param);
+            ChangePassword changePassword = new ChangePassword(param.Token, param.UserName,"", param.NewPassword);
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/ChangePassword", changePassword);
             if ((int)result.StatusCode != 200)
             {
-                return Unauthorized(result.Content.ReadAsStringAsync());
+                return Unauthorized(result.Content.ReadAsStringAsync().Result);
             }
-            return Ok(result.Content.ReadAsStringAsync());
+            return Ok(result.Content.ReadAsStringAsync().Result);
         }
 
         [HttpGet]

@@ -82,6 +82,11 @@
        var returnurl = getParameterByName('ReturnUrl');
        var postdata = { UserName: username,Password: password,ReturnUrl: returnurl}
 
+       if(returnurl==null)
+       {
+           returnurl = "/"
+       }
+
        if(!document.getElementById('inputEmail').validity.valid||!document.getElementById('inputPassword').validity.valid)
        {
            alert("Pelease Fill Username and Password");

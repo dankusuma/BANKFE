@@ -18,10 +18,17 @@ namespace BANKFE.Controllers
         }
 
 
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
         public IActionResult Index()
         {
             return View();
         }
+
 
         [HttpPost]
         public async Task<IActionResult> DoChangePassword([FromBody] ChangePasswordViewModel param)
@@ -35,7 +42,7 @@ namespace BANKFE.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> SendChangePassword([FromQuery] string username)
+        public async Task<IActionResult> SendChangePassword([FromQuery] string email)
         {
             var result = await _httpservices.GetData(_configuration["APIUrl"] + "/User/Authenticate");
             return Ok();

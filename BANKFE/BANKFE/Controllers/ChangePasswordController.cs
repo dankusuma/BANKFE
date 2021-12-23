@@ -38,14 +38,18 @@ namespace BANKFE.Controllers
             {
                 return Unauthorized(result.Content.ReadAsStringAsync());
             }
-            return Ok();
+            return Ok(result.Content.ReadAsStringAsync());
         }
 
         [HttpGet]
         public async Task<IActionResult> SendChangePassword([FromQuery] string email)
         {
-            var result = await _httpservices.GetData(_configuration["APIUrl"] + "/User/Authenticate");
-            return Ok();
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/ForgotPassword", new { Email = email });
+            if ((int)result.StatusCode != 200)
+            {
+                return Unauthorized(await result.Content.ReadAsStringAsync());
+            }
+            return Ok( await result.Content.ReadAsStringAsync());
         }
 
 

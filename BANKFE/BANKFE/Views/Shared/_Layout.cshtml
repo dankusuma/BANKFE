@@ -29,10 +29,24 @@
 </html>
 
 <script type="text/javascript">
-    function timedRefresh(timeoutPeriod) {
-        setTimeout(function () {
-            console.log("Time out...\nLogging out");
-            window.location.href="/Login/LogOut"
-        }, timeoutPeriod);
+    var timeOut;
+    var timer = 0;
+
+    const timedRefresh = (timeoutPeriod) =>
+    {
+        timer = timeoutPeriod;
+        timeOut = setTimeout(DoLogout, timeoutPeriod);
+    }
+
+    const cancelTimeOut = () => {
+        clearTimeout(timeOut);
+
+        if (timer <= 0) return;
+        timeOut = setTimeout(DoLogout, timer);
+    }
+
+    const DoLogout = () => {
+        console.log("Time out...\nLogging out");
+        window.location.href = "/Login/LogOut"
     }
 </script>

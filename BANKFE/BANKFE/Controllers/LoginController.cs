@@ -44,8 +44,10 @@ namespace BANKFE.Controllers
 
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
             //Initialize a new instance of the ClaimsPrincipal with ClaimsIdentity    
             var principal = new ClaimsPrincipal(identity);
+
             //SignInAsync is a Extension method for Sign in a principal for the specified scheme.    
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties()
             {
@@ -63,7 +65,5 @@ namespace BANKFE.Controllers
             //Redirect to home page    
             return LocalRedirect("/");
         }
-
-
     }
 }

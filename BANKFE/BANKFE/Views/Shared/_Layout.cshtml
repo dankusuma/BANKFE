@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
-<body class="row" style="background-color: #f2f3fa;">
+
+<!-- TODO: later, please change this timer to 10 minutes -->
+<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: timedRefresh(6000)">   <!-- add timer for 1 minutes -->
     <partial name="UI/_Sidebar" />
     <div class="col p-0">
         <partial name="UI/_Header" />
@@ -25,3 +27,12 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<script type="text/javascript">
+    function timedRefresh(timeoutPeriod) {
+        setTimeout(function () {
+            console.log("Time out...\nLogging out");
+            window.location.href="/Login/LogOut"
+        }, timeoutPeriod);
+    }
+</script>

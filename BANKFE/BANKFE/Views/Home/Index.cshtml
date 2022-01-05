@@ -16,6 +16,15 @@
         <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };' />
     </div>
 
+    <button type="button" 
+            class="btn btn-primary" 
+            data-toggle="modal" 
+            data-target="#generalModal">
+        Call Modal
+    </button>
+
+    <partial name="UI/_Modal" model='new ErrorViewModel { Title = "ERROR!", Desc="There is something wrong with our server.", RequestId="504" }' />
+
     <div style="width: 100%">
         <h3>Transaksi</h3>
 

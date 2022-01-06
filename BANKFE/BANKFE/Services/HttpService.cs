@@ -20,7 +20,6 @@ namespace BANKFE.Services
 
         public async Task<string> GetData(string url)
         {
-           
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var ress = await _httpClient.SendAsync(request);
             Console.WriteLine("test");
@@ -35,9 +34,6 @@ namespace BANKFE.Services
             Application.Json));
 
             return httpress;
-
-
-
         }
     }
 }

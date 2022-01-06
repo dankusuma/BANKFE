@@ -34,7 +34,8 @@ namespace BANKFE
             services.AddControllersWithViews();
             services.AddHttpClient<HttpService>();
             services.AddHttpClient<HttpService>().SetHandlerLifetime(TimeSpan.FromMinutes(1))
-           .AddPolicyHandler(HttpPolicy.GetRetryPolicy()).AddPolicyHandler(HttpPolicy.GetCircuitBreakerPolicy());
+                    .AddPolicyHandler(HttpPolicy.GetRetryPolicy()).AddPolicyHandler(HttpPolicy.GetCircuitBreakerPolicy());
+
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>x.LoginPath="/Login");
         }
 

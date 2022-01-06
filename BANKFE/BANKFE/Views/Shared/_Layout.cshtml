@@ -10,7 +10,8 @@
 </head>
 
 <!-- TODO: later, please change this timer to 10 minutes -->
-<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: timedRefresh(6000)">   <!-- add timer for 1 minutes -->
+<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: timedRefresh(60000)">
+    <!-- add timer for 1 minutes -->
     <partial name="UI/_Sidebar" />
     <div class="col p-0">
         <partial name="UI/_Header" />
@@ -25,28 +26,28 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    <script type="text/javascript">
+        var timeOut;
+        var timer = 0;
+
+        const timedRefresh = (timeoutPeriod) => {
+            timer = timeoutPeriod;
+            timeOut = setTimeout(DoLogout, timeoutPeriod);
+        }
+
+        const cancelTimeOut = () => {
+            console.log('cancel timer, reset time to start again...');
+            clearTimeout(timeOut);
+
+            if (timer <= 0) return;
+            timedRefresh(timer);
+        }
+
+        const DoLogout = () => {
+            console.log("Time out...\nLogging out");
+            window.location.href = "/Login/LogOut"
+        }
+    </script>
 </body>
 </html>
-
-<script type="text/javascript">
-    var timeOut;
-    var timer = 0;
-
-    const timedRefresh = (timeoutPeriod) =>
-    {
-        timer = timeoutPeriod;
-        timeOut = setTimeout(DoLogout, timeoutPeriod);
-    }
-
-    const cancelTimeOut = () => {
-        clearTimeout(timeOut);
-
-        if (timer <= 0) return;
-        timeOut = setTimeout(DoLogout, timer);
-    }
-
-    const DoLogout = () => {
-        console.log("Time out...\nLogging out");
-        window.location.href = "/Login/LogOut"
-    }
-</script>

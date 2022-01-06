@@ -10,7 +10,7 @@
 </head>
 
 <!-- TODO: later, please change this timer to 10 minutes -->
-<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: timedRefresh(60000)">
+<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: callPopup(60000)">
     <!-- add timer for 1 minutes -->
     <partial name="UI/_Sidebar" />
     <div class="col p-0">
@@ -31,9 +31,19 @@
         var timeOut;
         var timer = 0;
 
-        const timedRefresh = (timeoutPeriod) => {
+        const callPopup = (timePeriod) =>
+        {
+            const popupCount = timePeriod - 5000;
+            timeOut = setTimeout(() => {
+                $('#warningLogoutModal').modal('show');
+                startCountdown(5000);
+            }, popupCount);
+        }
+
+        const startCountdown = (timeoutPeriod) => {
             timer = timeoutPeriod;
-            timeOut = setTimeout(DoLogout, timeoutPeriod);
+            timeOut = setTimeout(doLogout, timeoutPeriod);
+            console.log("start count down...");
         }
 
         const cancelTimeOut = () => {
@@ -44,7 +54,7 @@
             timedRefresh(timer);
         }
 
-        const DoLogout = () => {
+        const doLogout = () => {
             console.log("Time out...\nLogging out");
             window.location.href = "/Login/LogOut"
         }

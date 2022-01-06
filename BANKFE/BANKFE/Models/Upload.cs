@@ -9,7 +9,7 @@ namespace BANKFE.Models
         public string photoName { get; set; }
         public string videoName { get; set; }
 
-        string folderLocation = @"D:\";
+        private readonly string folderLocation = @"D:\";
 
         IFormFile uploadedPhoto { get; set; }
         IFormFile uploadedVideo { get; set; }
@@ -78,7 +78,6 @@ namespace BANKFE.Models
 
             else
             {
-                string fileName = a.FileName;
                 string targetFileName = folderLocation + c;
                 FileStream stream = new FileStream(targetFileName, FileMode.Create);
                 a.CopyTo(stream);

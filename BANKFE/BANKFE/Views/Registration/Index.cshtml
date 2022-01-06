@@ -4,240 +4,240 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Registration Form</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
-        <link rel="stylesheet" href="~/css/site.css" />
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 
-    <body class="bg-pattern">
+<body class="bg-pattern">
 
-        <div class="bg-overlay"></div>
-        <div class="account-pages my-5 pt-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-8 col-lg-6 col-md-4">
-                        <div class="card">
-                            <div class="card-body py-3 px-5">
-                                <div class="">
-                                    <h4 class="font-size-18 text-muted mt-3 mb-3" style="color: #2C98F0 !important">Registration Page !</h4>
-                                    @*<form id="registerForm" method="get" action="" class="form-horizontal">*@
+    <div class="bg-overlay"></div>
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-6 col-md-4">
+                    <div class="card">
+                        <div class="card-body py-3 px-5">
+                            <div class="">
+                                <h4 class="font-size-18 text-muted mt-3 mb-3" style="color: #2C98F0 !important">Registration Page !</h4>
+                                @*<form id="registerForm" method="get" action="" class="form-horizontal">*@
 
-                                        <div id="basic-pills-wizard" class="twitter-bs-wizard">
-                                            <ul class="twitter-bs-wizard-nav">
-                                                <li class="nav-item">
-                                                    <a href="#user-info" class="nav-link" data-toggle="tab">
-                                                        <span class="step-number">01</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#user-credential" class="nav-link" data-toggle="tab">
-                                                        <span class="step-number">02</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#selfie-id" class="nav-link" data-toggle="tab">
-                                                        <span class="step-number">03</span>
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a href="#user-video" class="nav-link" data-toggle="tab">
-                                                        <span class="step-number">04</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        
-                                            <div class="tab-content twitter-bs-wizard-tab-content">
-                                                <div class="tab-pane" id="user-info">
-                                                    <form id="form1" class="form-horizontal" novalidate>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="nik">NIK</label>
-                                                                    <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="lahir">Tempat lahir</label>
-                                                                    <input type="text" class="form-control" id="lahir" name="lahir" placeholder="Tempat Lahir">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="ibu">Nama Ibu Kandung</label>
-                                                                    <input type="text" class="form-control" id="ibu" name="ibu" placeholder="Nama Ibu Kandung">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="kel">Kelurahan</label>
-                                                                    <input type="text" class="form-control" id="kel" name="kel" placeholder="Kelurahan">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="kab">Kabupaten/Kota</label>
-                                                                    <input type="text" class="form-control" id="kab" name="kab" placeholder="Kabupaten">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="gender">Jenis Kelamin</label>
-                                                                    <select class="form-control" id="gender" name="gender">
-                                                                        <option value="" selected>Pilih</option>
-                                                                        <option value="L">Laki-Laki</option>
-                                                                        <option value="P">Perempuan</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="job">Pekerjaan</label>
-                                                                    <select class="form-control" id="job" name="job">
-                                                                        <option value="" selected>Pilih</option>
-                                                                        <option value="PNS">PNS</option>
-                                                                        <option value="TNI/Polri">TNI/Polri</option>
-                                                                        <option value="Karyawan">Karyawan Swasta</option>
-                                                                        <option value="Wiraswasta">Wiraswasta</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="name">Nama Lengkap</label>
-                                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="tanggal">Tanggal Lahir</label>
-                                                                    <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Lahir">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="alamat">Alamat</label>
-                                                                    <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="alamat">Kecamatan</label>
-                                                                    <input type="text" class="form-control" id="kec" name="kec" placeholder="Kecamatan">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="prov">Provinsi</label>
-                                                                    <input type="text" class="form-control" id="prov" name="prov" placeholder="Provinsi">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="alamat">Status Perkawinan</label>
-                                                                    <select class="form-control" id="marital" name="marital">
-                                                                        <option value="" selected>Pilih</option>
-                                                                        <option value="Lajang">Lajang</option>
-                                                                        <option value="Menikah">Menikah</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                <div id="basic-pills-wizard" class="twitter-bs-wizard">
+                                    <ul class="twitter-bs-wizard-nav">
+                                        <li class="nav-item">
+                                            <a href="#user-info" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">01</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#user-credential" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">02</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#selfie-id" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">03</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#user-video" class="nav-link" data-toggle="tab">
+                                                <span class="step-number">04</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content twitter-bs-wizard-tab-content">
+                                        <div class="tab-pane" id="user-info">
+                                            <form id="form1" class="form-horizontal" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="nik">NIK</label>
+                                                            <input type="text" class="form-control" id="nik" name="nik" placeholder="NIK">
                                                         </div>
-                                                    </form>
-                                                </div>
-
-                                                <div class="tab-pane" id="user-credential">
-                                                    <form id="form2" class="form-horizontal" novalidate>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="email">Email</label>
-                                                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="password">Password</label>
-                                                                    <input type="password" class="form-control" id="password" name="password" placeholder="********">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="handphone">No Handphone</label>
-                                                                    <input type="text" class="form-control" id="handphone" name="handphone" placeholder="No Handphone">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="username">Username</label>
-                                                                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                                                                </div>
-                                                                <div class="mb-2">
-                                                                    <label class="form-label" for="retype">Re-type Password</label>
-                                                                    <input type="password" class="form-control" id="retype" name="retype" placeholder="********">
-                                                                </div>
-                                                            </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="lahir">Tempat lahir</label>
+                                                            <input type="text" class="form-control" id="lahir" name="lahir" placeholder="Tempat Lahir">
                                                         </div>
-                                                    </form>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="ibu">Nama Ibu Kandung</label>
+                                                            <input type="text" class="form-control" id="ibu" name="ibu" placeholder="Nama Ibu Kandung">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="kel">Kelurahan</label>
+                                                            <input type="text" class="form-control" id="kel" name="kel" placeholder="Kelurahan">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="kab">Kabupaten/Kota</label>
+                                                            <input type="text" class="form-control" id="kab" name="kab" placeholder="Kabupaten">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="gender">Jenis Kelamin</label>
+                                                            <select class="form-control" id="gender" name="gender">
+                                                                <option value="" selected>Pilih</option>
+                                                                <option value="L">Laki-Laki</option>
+                                                                <option value="P">Perempuan</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="job">Pekerjaan</label>
+                                                            <select class="form-control" id="job" name="job">
+                                                                <option value="" selected>Pilih</option>
+                                                                <option value="PNS">PNS</option>
+                                                                <option value="TNI/Polri">TNI/Polri</option>
+                                                                <option value="Karyawan">Karyawan Swasta</option>
+                                                                <option value="Wiraswasta">Wiraswasta</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="name">Nama Lengkap</label>
+                                                            <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="tanggal">Tanggal Lahir</label>
+                                                            <input type="date" class="form-control" id="tanggal" name="tanggal" placeholder="Tanggal Lahir">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="alamat">Alamat</label>
+                                                            <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Alamat">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="alamat">Kecamatan</label>
+                                                            <input type="text" class="form-control" id="kec" name="kec" placeholder="Kecamatan">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="prov">Provinsi</label>
+                                                            <input type="text" class="form-control" id="prov" name="prov" placeholder="Provinsi">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="alamat">Status Perkawinan</label>
+                                                            <select class="form-control" id="marital" name="marital">
+                                                                <option value="" selected>Pilih</option>
+                                                                <option value="Lajang">Lajang</option>
+                                                                <option value="Menikah">Menikah</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                            </form>
+                                        </div>
 
-                                                <div class="tab-pane" id="selfie-id">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-8">
-                                                            <div class="mb-2">
-                                                                <label class="form-label" for="selfie-id">Selfie with Id Card</label>
-                                                                <div>
-                                                                    <video id="frame-foto" autoplay playsinline></video>
-                                                                    <canvas id="canvas-foto" style="display: none"></canvas>
-                                                                    <div class="mt-2 text-center">
-                                                                        <button id="start-foto" class="btn btn-primary" style="width: 100%;">
-                                                                            Open Camera
-                                                                        </button>
-                                                                        <button id="take-foto" class="btn btn-primary" style="display: none; width: 100%;">
-                                                                            Ambil Gambar
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                        <div class="tab-pane" id="user-credential">
+                                            <form id="form2" class="form-horizontal" novalidate>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="email">Email</label>
+                                                            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="password">Password</label>
+                                                            <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="handphone">No Handphone</label>
+                                                            <input type="text" class="form-control" id="handphone" name="handphone" placeholder="No Handphone">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="username">Username</label>
+                                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                                                        </div>
+                                                        <div class="mb-2">
+                                                            <label class="form-label" for="retype">Re-type Password</label>
+                                                            <input type="password" class="form-control" id="retype" name="retype" placeholder="********">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                        <div class="tab-pane" id="selfie-id">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="mb-2">
+                                                        <label class="form-label" for="selfie-id">Selfie with Id Card</label>
+                                                        <div>
+                                                            <video id="frame-foto" autoplay playsinline></video>
+                                                            <canvas id="canvas-foto" style="display: none"></canvas>
+                                                            <div class="mt-2 text-center">
+                                                                <button id="start-foto" class="btn btn-primary" style="width: 100%;">
+                                                                    Open Camera
+                                                                </button>
+                                                                <button id="take-foto" class="btn btn-primary" style="display: none; width: 100%;">
+                                                                    Ambil Gambar
+                                                                </button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="tab-pane" id="user-video">
-                                                    <div class="row justify-content-center">
-                                                        <div class="col-md-8">
-                                                            <div class="mb-2">
-                                                                <label class="form-label" for="selfie-id">Video Pernyataan</label>
-                                                                <p>Ucapkan kalimat berikut:</p>
-                                                                <p>"Saya [Nama], dengan sadar bersedia membuat rekening di Bank Ini"</p>
-                                                                <div>
-                                                                    <video id="frame-video" playsinline autoplay muted></video>
-                                                                    <video id="frame-recorded" style="display: none;" playsinline></video>
-                                                                    <div class="mt-2 text-center">
-                                                                        <button id="start-video" class="btn btn-primary" style="width: 100%;">
-                                                                            Open Camera
-                                                                        </button>
-                                                                        <button id="start-record" class="btn btn-primary" style="width: 100%; display: none;">
-                                                                            Start Record
-                                                                        </button>
-                                                                        <button id="stop-record" class="btn btn-primary" style="width: 100%; display: none;">
-                                                                            Stop Record
-                                                                        </button>
-                                                                        <button id="play-record" class="btn btn-primary" style="width: 100%; display: none;">
-                                                                            Play
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <ul class="pager wizard twitter-bs-wizard-pager-link" style="padding-left: 0px;">
-                                                    <li class="previous"><a href="javascript: void(0);">Previous</a></li>
-                                                    <li class="next"><a href="javascript: void(0);">Next</a></li>
-                                                    <li class="finish"><a id="submit-form" href="javascript: void(0);">Submit</a></li>
-                                                </ul>
                                             </div>
                                         </div>
 
-                                    @*</form>*@
+                                        <div class="tab-pane" id="user-video">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <div class="mb-2">
+                                                        <label class="form-label" for="selfie-id">Video Pernyataan</label>
+                                                        <p>Ucapkan kalimat berikut:</p>
+                                                        <p>"Saya [Nama], dengan sadar bersedia membuat rekening di Bank Ini"</p>
+                                                        <div>
+                                                            <video id="frame-video" playsinline autoplay muted></video>
+                                                            <video id="frame-recorded" style="display: none;" playsinline></video>
+                                                            <div class="mt-2 text-center">
+                                                                <button id="start-video" class="btn btn-primary" style="width: 100%;">
+                                                                    Open Camera
+                                                                </button>
+                                                                <button id="start-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                    Start Record
+                                                                </button>
+                                                                <button id="stop-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                    Stop Record
+                                                                </button>
+                                                                <button id="play-record" class="btn btn-primary" style="width: 100%; display: none;">
+                                                                    Play
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ul class="pager wizard twitter-bs-wizard-pager-link" style="padding-left: 0px;">
+                                            <li class="previous"><a href="javascript: void(0);">Previous</a></li>
+                                            <li class="next"><a href="javascript: void(0);">Next</a></li>
+                                            <li class="finish"><a id="submit-form" href="javascript: void(0);">Submit</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
+
+                                @*</form>*@
                             </div>
                         </div>
                     </div>
-                <!-- end row -->
                 </div>
+                <!-- end row -->
             </div>
         </div>
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/lib/node-waves/waves.min.js"></script>
-        
-        <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-        <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
-        <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/node-waves/waves.min.js"></script>
 
-        <script src="~/js/pages/form-wizard.init.js"></script>
-        <script src="~/js/site.js"></script>
-    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-8.0.0.js"></script>
+
+    <script src="~/js/pages/form-wizard.init.js"></script>
+    <script src="~/js/site.js"></script>
+</body>
 </html>

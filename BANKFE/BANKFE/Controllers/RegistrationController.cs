@@ -25,14 +25,14 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitRegistration([FromBody] Registration model)
         {
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
+             await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
             return Ok();
         }
 
         [HttpPost]
         public async Task<IActionResult> SubmitUpload([FromBody] Upload upload)
         {
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", upload);
+            await _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", upload);
             return Ok();
         }
     }

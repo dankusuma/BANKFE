@@ -316,7 +316,6 @@
             var nik = $('#nik').val();
             var name = $('#name').val();
             var tmpLahir = $('#lahir').val();
-            var tglLahir = $('#tanggal').val();
             var ibuKandung = $('#ibu').val();
             var tglLahir = $('#tanggal').val();
             var alamat = $('#alamat').val();

@@ -23,10 +23,6 @@ namespace BANKFE.Views.Registration
             _environment = environment;
         }
 
-        public void OnGet()
-        {
-        }
-
         public async Task OnPostAsync()
         {
             if (UploadedFile == null || UploadedFile.Length == 0)
@@ -44,8 +40,8 @@ namespace BANKFE.Views.Registration
             _logger.LogInformation($"Uploading {UploadedFile.FileName}.");
             string targetFileName = $"{_environment.ContentRootPath}/{UploadedFile.FileName}";
             string folderLocation = @"D:\Quiz\.Net Bootcamp\Self Exercise\TestingUpload\TestingUpload\";
+
             string fileName = UploadedFile.FileName;
-            fileName = "test.jpg";
             targetFileName = folderLocation + fileName;
             using (var stream = new FileStream(targetFileName, FileMode.Create))
             {

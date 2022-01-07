@@ -1,129 +1,99 @@
 ﻿@{
-  Layout = null;
+    Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Change Password</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
-        <link rel="stylesheet" href="~/css/site.css" />
-        </head>
-        <body class="bg-pattern">
-
-            <div class="bg-overlay"></div>
-        <div class="account-pages my-5 pt-5">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-5 col-lg-6 col-md-4">
-                        <div class="card">
-                            <div class="card-body py-3 px-5">
-                                <div class="">
-
-       <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
-      <div class="mb-2 row">
-       <h1 class="h3 mb-3 font-weight-normal">Change Password</h1>
-       </div>
-      <div class="mb-2 row">
-      <label class="form-label" for="inputEmail">New Password</label>
-      <input type="password" id="newPass" class="form-control" placeholder="New Passwor" required="" autofocus="">
-      </div>
-      <div class="mb-2 row">
-      <label class="form-label" for="inputPassword">Confirm New Password</label>
-      <input type="password" id="confirmNewPass" class="form-control" placeholder="Confirm New Password" required="">
-       </div>
-       <div class="mb-2 row pt-3">
-      <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Change Password</button>
-      </div>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <title>Change Password</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="bg-pattern">
+    <div class="bg-overlay"></div>
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-4">
+                    <div class="card">
+                        <div class="card-body py-3 px-5">
+                            <div class="">
+                                <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
+                                <div class="mb-2 row">
+                                    <h1 class="h3 mb-3 font-weight-normal">Change Password</h1>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="form-label" for="inputEmail">New Password</label>
+                                    <input type="password" id="newPass" class="form-control" placeholder="New Passwor" required="" autofocus="">
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="form-label" for="inputPassword">Confirm New Password</label>
+                                    <input type="password" id="confirmNewPass" class="form-control" placeholder="Confirm New Password" required="">
+                                </div>
+                                <div class="mb-2 row pt-3">
+                                    <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Change Password</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
             </div>
+            <!-- end row -->
         </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/node-waves/waves.min.js"></script>
+
+    <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+
+    <script src="~/js/pages/form-wizard.init.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#signinsubmit').click(function () {
+                var newPass = $('#newPass').val();
+                var confirmNewPass = $('#confirmNewPass').val();
+                var username = getParameterByName('username');
+                var token = getParameterByName('token');
+                var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token }
 
 
+                if (newPass != confirmNewPass) {
+                    alert("Password Confirmation Not Match");
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/ChangePassword/DoChangePassword',
+                        data: JSON.stringify(postdata),
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (data) {
+                            window.location.href = '/login';
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        }
+                    });
+                }
+            });
+        });
 
-
-
-             <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/lib/node-waves/waves.min.js"></script>
-        
-        <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
-        <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
-
-        <script src="~/js/pages/form-wizard.init.js"></script>
-        <script src="~/js/site.js"></script>
-
-     <script type="text/javascript">
-
-
-
-
-    $( document ).ready(function() {
-   
-
-   $('#signinsubmit').click(function(){
-
-       var newPass = $('#newPass').val();
-       var confirmNewPass = $('#confirmNewPass').val();
-       var username = getParameterByName('username');
-       var token = getParameterByName('token');
-       var postdata = { NewPassword: newPass,ConfirmPassword: confirmNewPass,UserName: username,Token: token}
-
-
-       if(newPass!=confirmNewPass)
-       {
-           alert("Password Confirmation Not Match");
-       }
-       else
-       {
-           $.ajax({
-                type: 'POST',
-      url: '/ChangePassword/DoChangePassword',
-      data: JSON.stringify(postdata),
-                contentType: 'application/json; charset=utf-8',
-                datatype: 'json',
-      success: function(data){
-        window.location.href = '/login';
-      },
-      error: function(data){
-        alert(data.responseText);
-  }
-
-});
-       }
-
-            
-
-});
-});
-
-
-
-
-
-
-function getParameterByName(name, url = window.location.href) {
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-
-</script>
-
-
-    </body>
-
-
-    </html>
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+</body>
+</html>

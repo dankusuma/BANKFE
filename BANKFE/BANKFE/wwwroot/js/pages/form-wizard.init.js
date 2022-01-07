@@ -9,31 +9,63 @@
             },
             name: {
                 required: true,
+                maxlength: 100,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             lahir: {
-                required: true
+                required: true,
+                maxlength: 30,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             tanggal: {
                 required: true,
                 date: true
             },
             ibu: {
-                required: true
+                required: true,
+                maxlength: 100,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             alamat: {
-                required: true
+                required: true,
+                maxlength: 200,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             kel: {
-                required: true
+                required: true,
+                maxlength: 50,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             kec: {
-                required: true
+                required: true,
+                maxlength: 50,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             kab: {
-                required: true
+                required: true,
+                maxlength: 50,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             prov: {
-                required: true
+                required: true,
+                maxlength: 50,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             gender: {
                 required: true
@@ -47,19 +79,43 @@
         },
         messages: {
             nik: {
-                number: "Tolong input NIK dengan Benar",
+                number: "Tolong input NIK dengan benar",
                 minlength: "NIK harus 16 karakter",
                 maxlength: "NIK harus 16 karakter",
             },
-            name: "Tolong input Nama",
-            lahir: "Tolong input Tempat Lahir",
+            name: {
+                maxlength: "Maksimal 30 karakter",
+                normalizer: "Tolong input nama"
+            },
+            lahir: {
+                maxlength: "Maksimal 30 karakter",
+                normalizer: "Tolong input tempat lahir yang benar"
+            },
             tanggal: "Tolong input Tanggal Lahir",
-            ibu: "Tolong input Nama Ibu Kandung",
-            alamat: "Tolong input Alamat",
-            kel: "Tolong input Kelurahan",
-            kec: "Tolong input Kecamatan",
-            kab: "Tolong input Kabupaten/Kota",
-            prov: "Tolong input Provinsi",
+            ibu: {
+                maxlength: "Maksimal 100 karakter",
+                normalizer: "Tolong input nama ibu yang benar"
+            },
+            alamat: {
+                maxlength: "Maksimal 200 karakter",
+                normalizer: "Tolong input alamat yang benar"
+            },
+            kel: {
+                maxlength: "Maksimal 50 karakter",
+                normalizer: "Tolong input kelurahan yang benar"
+            },
+            kec: {
+                maxlength: "Maksimal 50 karakter",
+                normalizer: "Tolong input kecamatan yang benar"
+            },
+            kab: {
+                maxlength: "Maksimal 50 karakter",
+                normalizer: "Tolong input Kabupaten/Kota yang benar"
+            },
+            prov: {
+                maxlength: "Maksimal 50 karakter",
+                normalizer: "Tolong input provinsi yang benar"
+            },
             gender: "Tolong pilih Jenis Kelamin",
             marital: "Tolong pilih Status Pernikahan",
             job: "Tolong pilih Pekerjaan"
@@ -80,15 +136,26 @@
             },
             username: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 20,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             password: {
                 required: true,
-                minlength: 8
+                minlength: 8,
+                maxlength: 50,
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             retype: {
                 required: true,
-                equalTo: '[name="password"]'
+                equalTo: '[name="password"]',
+                normalizer: function (value) {
+                    return $.trim(value);
+                }
             },
             handphone: {
                 required: true,
@@ -97,23 +164,22 @@
         },
         messages: {
             email: {
-                required: "Tolong input Email",
                 email: "Format Email salah"
             },
             username: {
-                required: "Tolong input Nama",
-                minlength: "Username minimal 8 karakter"
+                minlength: "Username minimal 8 karakter",
+                maxlength: "Username maximal 20 karakter",
+                normalizer: "Tolong input nama yang benar"
             },
             password: {
-                required: "Tolong input Nama",
-                minlength: "Password minimal 8 karakter"
+                minlength: "Password minimal 8 karakter",
+                maxlength: "Password maximal 50 karakter",
+                normalizer: "Tolong input password yang benar"
             },
             retype: {
-                required: "Tolong input Nama",
                 equalTo: "Password tidak sama"
             },
             handphone: {
-                required: "Tolong input Handphone",
                 number: "Tolong input No Handphone dengan benar"
             }
         },

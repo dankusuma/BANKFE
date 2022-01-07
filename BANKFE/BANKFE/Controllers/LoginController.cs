@@ -22,7 +22,8 @@ namespace BANKFE.Controllers
 
         private readonly HttpService _httpservices;
         private readonly IConfiguration _configuration;
-        public LoginController( HttpService httpservice, IConfiguration configuration)
+
+        public LoginController(HttpService httpservice, IConfiguration configuration)
         {
             _httpservices = httpservice;
             _configuration = configuration;
@@ -32,7 +33,7 @@ namespace BANKFE.Controllers
         public async Task<IActionResult> DoLoginAsync([FromBody] Login login)
         {
             var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Authenticate", login);
-            if((int)result.StatusCode != 200)
+            if ((int)result.StatusCode != 200)
             {
                 return Unauthorized(result.Content.ReadAsStringAsync().Result);
             }
@@ -40,8 +41,8 @@ namespace BANKFE.Controllers
             var claims = new List<Claim>() {
                         new Claim(ClaimTypes.Name,token.Claims.First(c => c.Type == ClaimTypes.Name).Value),
                         new Claim(ClaimTypes.Role, token.Claims.First(c => c.Type == ClaimTypes.Role).Value),
-                        new Claim(ClaimTypes.Authentication, result.Content.ReadAsStringAsync().Result)
-
+                        new Claim(ClaimTypes.Authentication, result.Content.ReadAsStringAsync().Result),
+                        new Claim("pin_status", token.Claims.First(c => c.Type == "pin_status").Value)
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -52,9 +53,10 @@ namespace BANKFE.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties()
             {
                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes((token.ValidTo - token.ValidFrom).TotalMinutes),
-                
+
                 IsPersistent = false
-            }) ;
+            });
+
             return Ok();
         }
 

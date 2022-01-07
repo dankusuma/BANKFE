@@ -1,0 +1,100 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create PIN</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body class="bg-pattern">
+    <div class="bg-overlay"></div>
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-4">
+                    <div class="card">
+                        <div class="card-body py-3 px-5">
+                            <div class="">
+
+                                <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
+                                <div class="mb-2 row">
+                                    <h1 class="h3 mb-3 font-weight-normal">Create pin</h1>
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="form-label" for="newPin">Pin</label>
+                                    <input type="password" id="newPin" class="form-control" placeholder="Input pin" required="" autofocus="" maxlength="6">
+                                </div>
+                                <div class="mb-2 row">
+                                    <label class="form-label" for="confirmPin">Confirm new pin</label>
+                                    <input type="password" id="confirmPin" class="form-control" placeholder="Confirm pin" required="" maxlength="6">
+                                </div>
+                                <div class="mb-2 row pt-3">
+                                    <button class="btn btn-lg btn-primary btn-block" id="submitpin">Create Pin</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/node-waves/waves.min.js"></script>
+
+    <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+
+    <script src="~/js/pages/form-wizard.init.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submitpin').click(function () {
+                var newPin = $('#newPin').val();
+                var confirmPin = $('#confirmPin').val();
+                var username = getParameterByName('username');
+                var token = getParameterByName('token');
+                var postdata = { NewPin: newPin, ConfirmPin: confirmPin, UserName: username, Token: token }
+
+                if (newPin != confirmPin) {
+                    alert("Pin Confirmation Not Match");
+                }
+                else {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Pin/DoCreatePIN',
+                        data: JSON.stringify(postdata),
+                        contentType: 'application/json; charset=utf-8',
+                        datatype: 'json',
+                        success: function (data) {
+                            window.location.href = '/login';
+                        },
+                        error: function (data) {
+                            alert(data.responseText);
+                        }
+                    });
+                }
+            });
+        });
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+    </script>
+</body>
+</html>

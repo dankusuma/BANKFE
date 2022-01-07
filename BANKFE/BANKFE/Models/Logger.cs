@@ -7,7 +7,7 @@ namespace BANKFE.Services
     public class Logger
     {
         
-        private string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Bank_log\" ;
+        private readonly string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Bank_log\" ;
         
         public DateTime dtm_crt { get; set; }
         public string username { get; set; }

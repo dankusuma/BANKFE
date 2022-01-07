@@ -246,8 +246,8 @@
     }
 
     function stopCamera() {
-        stream = frameFoto.srcObject;
-        tracks = stream.getTracks();
+        let stream = frameFoto.srcObject;
+        let tracks = stream.getTracks();
         tracks.forEach(function (track) {
             track.stop();
         });
@@ -320,7 +320,7 @@
         frameVideo.srcObject = null;
     }
 
-    playRecord.onclick = function playRecord() {
+    playRecord.onclick = () => {
         const superBuffer = new Blob(recordedBlobs, { type: mimeVideo });
         frameRecorded.src = null;
         frameRecorded.srcObject = null;
@@ -419,9 +419,9 @@
             };
 
             var postUpload = {
-                photoName: nik + "_" + name,
+                photoName: nik + "_" + name + Date.now(),
                 stringPhoto: fotoString,
-                videoName: nik + "_" + name,
+                videoName: nik + "_" + name + Date.now(),
                 stringVideo: videoString
             };
 

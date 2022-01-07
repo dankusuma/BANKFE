@@ -18,6 +18,7 @@
         <div class="container">
             <main role="main" class="pb-1">
                 @RenderBody()
+                <partial name="UI/_WarningLogoutModal" />
             </main>
         </div>
         <partial name="UI/_Footer" />
@@ -33,15 +34,18 @@
 
         const callPopup = (timePeriod) =>
         {
+            console.log("start counting down....")
+            timer = timePeriod;
+
             const popupCount = timePeriod - 5000;
             timeOut = setTimeout(() => {
+                console.log("pop up show! 5 second left...");
                 $('#warningLogoutModal').modal('show');
                 startCountdown(5000);
             }, popupCount);
         }
 
         const startCountdown = (timeoutPeriod) => {
-            timer = timeoutPeriod;
             timeOut = setTimeout(doLogout, timeoutPeriod);
             console.log("start count down...");
         }
@@ -51,7 +55,7 @@
             clearTimeout(timeOut);
 
             if (timer <= 0) return;
-            startCountdown(timer);
+            callPopup(timer);
         }
 
         const doLogout = () => {

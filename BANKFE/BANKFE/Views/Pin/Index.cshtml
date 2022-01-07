@@ -1,5 +1,9 @@
 ﻿@{
     Layout = null;
+    string mode = (string)ViewData["mode"];
+    string username = (string)ViewData["username"];
+    string modeText = "Create";
+    if (mode == "edit") modeText = "Edit";
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -22,10 +26,9 @@
                     <div class="card">
                         <div class="card-body py-3 px-5">
                             <div class="">
-
                                 <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
                                 <div class="mb-2 row">
-                                    <h1 class="h3 mb-3 font-weight-normal">Create pin</h1>
+                                    <h1 class="h3 mb-3 font-weight-normal">@modeText pin</h1>
                                 </div>
                                 <div class="mb-2 row">
                                     <label class="form-label" for="newPin">Pin</label>
@@ -36,7 +39,7 @@
                                     <input type="password" id="confirmPin" class="form-control" placeholder="Confirm pin" required="" maxlength="6">
                                 </div>
                                 <div class="mb-2 row pt-3">
-                                    <button class="btn btn-lg btn-primary btn-block" id="submitpin">Create Pin</button>
+                                    <button class="btn btn-lg btn-primary btn-block" id="submitpin">@modeText Pin</button>
                                 </div>
                             </div>
                         </div>

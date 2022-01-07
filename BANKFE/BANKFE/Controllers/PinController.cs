@@ -4,6 +4,7 @@ using BANKFE.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BANKFE.Controllers
 {
@@ -19,6 +20,8 @@ namespace BANKFE.Controllers
 
         public IActionResult Index()
         {
+            ViewData["mode"] = HttpContext.Request.Query["mode"][0];
+            ViewData["username"] = HttpContext.Request.Query["username"][0];
             return View();
         }
 

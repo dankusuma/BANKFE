@@ -9,7 +9,6 @@ namespace BANKFE.Controllers
 {
     public class ChangePasswordController : Controller
     {
-
         private readonly HttpService _httpservices;
         private readonly IConfiguration _configuration;
         public ChangePasswordController(HttpService httpservice, IConfiguration configuration)
@@ -18,18 +17,15 @@ namespace BANKFE.Controllers
             _configuration = configuration;
         }
 
-
         public IActionResult ForgotPassword()
         {
             return View();
         }
 
-
         public IActionResult Index()
         {
             return View();
         }
-
 
         [HttpPost]
         public async Task<IActionResult> DoChangePassword([FromBody] ChangePasswordViewModel param)
@@ -53,7 +49,5 @@ namespace BANKFE.Controllers
             }
             return Ok( await result.Content.ReadAsStringAsync());
         }
-
-
     }
 }

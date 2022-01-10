@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body class="bg-pattern">
-
     <div class="bg-overlay"></div>
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -39,7 +38,7 @@
                                     <a href="/ChangePassword/ForgotPassword" class="link-info ">Forget Password?</a>
                                 </div>
                                 <div class="mb-2 row">
-                                    <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Login</button>
+                                    <button class="btn btn-lg btn-primary btn-block" id="signinsubmit" disabled>Login</button>
                                 </div>
                                 <div class="row justify-content-center pt-4 pb-5">
                                     <label>Don't have access?&nbsp;</label><a href="/Registration" class="link-info"> Register now</a>
@@ -64,11 +63,27 @@
     <script src="~/js/site.js"></script>
 
     <script type="text/javascript">
-
+        var usernameValid = false;
+        var passwordValid = false;
 
         $(document).ready(function () {
-            $('#signinsubmit').click(function () {
+            $('#inputEmail').on("input", () => {
+                const value = $('#inputEmail').val();
+                usernameValid = value.length >= 6 && value.length < 50;
 
+                console.log('username length: ', value);
+                $('#signinsubmit').prop('disabled', !passwordValid || !usernameValid);
+            });
+
+            $('#inputPassword').on("input", () => {
+                const value = $('#inputPassword').val();
+                passwordValid = value.length >= 6 && value.length < 50;
+
+                console.log('password length: ', value);
+                $('#signinsubmit').prop('disabled', !passwordValid || !usernameValid);
+            });
+
+            $('#signinsubmit').click(function () {
                 var username = $('#inputEmail').val();
                 var password = $('#inputPassword').val();
                 var returnurl = getParameterByName('ReturnUrl');

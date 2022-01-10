@@ -25,8 +25,11 @@
                                 <div class="mb-2 row">
                                     <h1 class="h3 mb-3 font-weight-normal">Change Password</h1>
                                 </div>
+                                <div class="mb-=2 row">
+                                    <p id="warning-text" class="text-danger">Password must be minimum has 8 characters!</p>
+                                </div>
                                 <div class="mb-2 row">
-                                    <label class="form-label" for="inputEmail">New Password</label>
+                                    <label class="form-label" for=" inputEmail">New Password</label>
                                     <input type="password" id="newPass" class="form-control" placeholder="New Passwor" required="" autofocus="">
                                 </div>
                                 <div class="mb-2 row">
@@ -34,7 +37,7 @@
                                     <input type="password" id="confirmNewPass" class="form-control" placeholder="Confirm New Password" required="">
                                 </div>
                                 <div class="mb-2 row pt-3">
-                                    <button class="btn btn-lg btn-primary btn-block" id="signinsubmit">Change Password</button>
+                                    <button class="btn btn-lg btn-primary btn-block" id="changePasswodBtn" disabled>Change Password</button>
                                 </div>
                             </div>
                         </div>
@@ -57,43 +60,68 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#signinsubmit').click(function () {
-                var newPass = $('#newPass').val();
-                var confirmNewPass = $('#confirmNewPass').val();
-                var username = getParameterByName('username');
-                var token = getParameterByName('token');
-                var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token }
+            var passwordValid = false;
+            var confirmPswValid = false;
 
+            $(document).ready(function () {
+                $('#newPass').on("input", () => {
+                    const value = $('#newPass').val();
+                    passwordValid = value.length >= 8 && value.length < 50;
+                    const isValid = !passwordValid || !confirmPswValid;
 
-                if (newPass != confirmNewPass) {
-                    alert("Password Confirmation Not Match");
-                }
-                else {
-                    $.ajax({
-                        type: 'POST',
-                        url: '/ChangePassword/DoChangePassword',
-                        data: JSON.stringify(postdata),
-                        contentType: 'application/json; charset=utf-8',
-                        datatype: 'json',
-                        success: function (data) {
-                            window.location.href = '/login';
-                        },
-                        error: function (data) {
-                            alert(data.responseText);
-                        }
-                    });
+                    console.log(passwordValid, confirmPswValid, isValid);
+                    $('#changePasswodBtn').prop('disabled', !isValid);
+                    if (isValid) $('#warning-text').hide();
+                    else $('#warning-text').show();
+                });
+
+                $('#confirmNewPass').on("input", () => {
+                    const value = $('#confirmNewPass').val();
+                    confirmPswValid = value.length >= 8 && value.length < 50;
+                    const isValid = !passwordValid || !confirmPswValid;
+
+                    console.log(passwordValid, confirmPswValid, isValid);
+                    $('#changePasswodBtn').prop('disabled', !isValid);
+                    if (isValid) $('#warning-text').hide();
+                    else $('#warning-text').show();
+                });
+
+                $('#changePasswodBtn').click(function () {
+                    var newPass = $('#newPass').val();
+                    var confirmNewPass = $('#confirmNewPass').val();
+                    var username = getParameterByName('username');
+                    var token = getParameterByName('token');
+                    var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token }
+
+                    if (newPass != confirmNewPass) {
+                        alert("Password Confirmation Not Match");
+                    }
+                    else {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/ChangePassword/DoChangePassword',
+                            data: JSON.stringify(postdata),
+                            contentType: 'application/json; charset=utf-8',
+                            datatype: 'json',
+                            success: function (data) {
+                                window.location.href = '/login';
+                            },
+                            error: function (data) {
+                                alert(data.responseText);
+                            }
+                        });
+                    }
+                });
+
+                function getParameterByName(name, url = window.location.href) {
+                    name = name.replace(/[\[\]]/g, '\\$&');
+                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
                 }
             });
-        });
-
-        function getParameterByName(name, url = window.location.href) {
-            name = name.replace(/[\[\]]/g, '\\$&');
-            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                results = regex.exec(url);
-            if (!results) return null;
-            if (!results[2]) return '';
-            return decodeURIComponent(results[2].replace(/\+/g, ' '));
-        }
     </script>
 </body>
 </html>

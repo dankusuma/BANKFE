@@ -29,7 +29,8 @@ $(document).ready(() => {
         var confirmNewPass = $('#confirmNewPass').val();
         var username = getParameterByName('username');
         var token = getParameterByName('token');
-        var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token }
+        var mode = getParameterByName('mode');
+        var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token, Mode: mode }
 
         if (newPass != confirmNewPass) {
             alert("Password Confirmation Not Match");

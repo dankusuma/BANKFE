@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create PIN</title>
+    <title>@modeText PIN</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -26,6 +26,7 @@
                     <div class="card">
                         <div class="card-body py-3 px-5">
                             <div class="">
+                                <input type="hidden" name="mode" value="@mode" />
                                 <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
                                 <div class="mb-2 row">
                                     <h1 class="h3 mb-3 font-weight-normal">@modeText pin</h1>
@@ -63,6 +64,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#submitpin').click(function () {
+                var mode = $('#mode').val();
                 var newPin = $('#newPin').val();
                 var confirmPin = $('#confirmPin').val();
                 var username = getParameterByName('username');
@@ -80,7 +82,7 @@
                         contentType: 'application/json; charset=utf-8',
                         datatype: 'json',
                         success: function (data) {
-                            window.location.href = '/login';
+                            window.location.href = '/';
                         },
                         error: function (data) {
                             alert(data.responseText);

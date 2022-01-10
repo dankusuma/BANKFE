@@ -43,7 +43,7 @@
                 <li class="mb-3"><a class="nav-item-link" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-journal mx-3"></em>Menu 2</a></li>
                 <li class="mb-3"><a class="nav-item-link" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-journal mx-3"></em>Menu 3</a></li>
                 <li class="mb-3"><a class="nav-item-link" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-gear-fill mx-3"></em>Settings</a></li>
-                @*<li class="mb-3"><a class="nav-item-link" asp-controller="Pin" asp-action="Index"><em class="bi bi-gear-fill mx-3"></em>Change PIN</a></li>*@
+                @Html.ActionLink("Change Password", "Index", "ChangePassword", new { mode = "change", username = username })
                 @Html.ActionLink("Change PIN", "Index", "Pin", new { mode = "edit", username = username })
             </ul>
         </div>

@@ -55,73 +55,8 @@
     <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
     <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
 
-    <script src="~/js/pages/form-wizard.init.js"></script>
+    <script src="~/js/pages/change-password-form.js"></script>
     <script src="~/js/site.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var passwordValid = false;
-            var confirmPswValid = false;
-
-            $(document).ready(function () {
-                $('#newPass').on("input", () => {
-                    const value = $('#newPass').val();
-                    passwordValid = value.length >= 8 && value.length < 50;
-                    const isValid = !passwordValid || !confirmPswValid;
-
-                    console.log(passwordValid, confirmPswValid, isValid);
-                    $('#changePasswodBtn').prop('disabled', !isValid);
-                    if (isValid) $('#warning-text').hide();
-                    else $('#warning-text').show();
-                });
-
-                $('#confirmNewPass').on("input", () => {
-                    const value = $('#confirmNewPass').val();
-                    confirmPswValid = value.length >= 8 && value.length < 50;
-                    const isValid = !passwordValid || !confirmPswValid;
-
-                    console.log(passwordValid, confirmPswValid, isValid);
-                    $('#changePasswodBtn').prop('disabled', !isValid);
-                    if (isValid) $('#warning-text').hide();
-                    else $('#warning-text').show();
-                });
-
-                $('#changePasswodBtn').click(function () {
-                    var newPass = $('#newPass').val();
-                    var confirmNewPass = $('#confirmNewPass').val();
-                    var username = getParameterByName('username');
-                    var token = getParameterByName('token');
-                    var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token }
-
-                    if (newPass != confirmNewPass) {
-                        alert("Password Confirmation Not Match");
-                    }
-                    else {
-                        $.ajax({
-                            type: 'POST',
-                            url: '/ChangePassword/DoChangePassword',
-                            data: JSON.stringify(postdata),
-                            contentType: 'application/json; charset=utf-8',
-                            datatype: 'json',
-                            success: function (data) {
-                                window.location.href = '/login';
-                            },
-                            error: function (data) {
-                                alert(data.responseText);
-                            }
-                        });
-                    }
-                });
-
-                function getParameterByName(name, url = window.location.href) {
-                    name = name.replace(/[\[\]]/g, '\\$&');
-                    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                        results = regex.exec(url);
-                    if (!results) return null;
-                    if (!results[2]) return '';
-                    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-                }
-            });
-    </script>
 </body>
 </html>

@@ -2,10 +2,12 @@ using System;
 
 namespace BANKFE.Models
 {
-    public class ErrorViewModel
+    public class ErrorViewModel : IErrorModal
     {
-        public string RequestId { get; set; }
+        public string Title { get; set; }
+        public string Desc { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string RequestId { get; set; }
+        public bool ShowRequestId { get { return !string.IsNullOrEmpty(RequestId); } }
     }
 }

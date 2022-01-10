@@ -1,0 +1,23 @@
+﻿@model AccountItemModel;
+
+@*this part is the item of the bank account card*@
+
+<a class="card shadow flex-row m-4 p-4 justifyco" 
+        type="button"
+        asp-controller="@Model.ControllerName"
+        asp-action="@Model.ActionName"
+        style="border: none; cursor: pointer; text-decoration:none;color:inherit;">
+    <div class="mr-2 my-auto">
+        <img src="/images/temp_img.jpg"
+             class="rounded-circle"
+             alt="temp img" />
+    </div>
+
+    <div class="d-inline-block w-75 my-4 mx-2">
+        <span class="m-0">Tabungan</span>
+        <span class="d-flex justify-content-between">
+            <span class="text-black-50 m-0">Account number</span>
+            <span class="text-success">Rp. xxx.xxx.xxx,00</span>
+        </span>
+    </div>
+</a>

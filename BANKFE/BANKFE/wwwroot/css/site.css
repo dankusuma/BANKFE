@@ -1,6 +1,139 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap");
+
+/* Registration Style */
+
+.bg-pattern {
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    opacity: 0.7;
+    background-color: #000;
+}
+
+.btn-default.btn-primary {
+    background-color: #2C98F0;
+    border-color: #2C98F0;
+    color: #fff;
+}
+
+.twitter-bs-wizard .twitter-bs-wizard-nav {
+    position: relative;
+}
+
+    .twitter-bs-wizard .twitter-bs-wizard-nav:before {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background-color: #f1f5f7;
+        position: absolute;
+        right: 0;
+        top: 26px;
+    }
+
+    .twitter-bs-wizard .twitter-bs-wizard-nav .step-number {
+        display: inline-block;
+        width: 38px;
+        height: 38px;
+        line-height: 34px;
+        border: 2px solid #2C98F0;
+        color: #2C98F0;
+        text-align: center;
+        border-radius: 50%;
+        position: relative;
+        background-color: #fff;
+    }
+
+@media (max-width: 991.98px) {
+    .twitter-bs-wizard .twitter-bs-wizard-nav .step-number {
+        display: block;
+        margin: 0 auto 8px !important;
+    }
+}
+
+.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link .step-title {
+    display: block;
+    margin-top: 8px;
+    font-weight: 600;
+}
+
+@media (max-width: 575.98px) {
+    .twitter-bs-wizard .twitter-bs-wizard-nav .nav-link .step-title {
+        display: none;
+    }
+}
+
+.twitter-bs-wizard .twitter-bs-wizard-nav .nav-link.active {
+    background-color: transparent;
+    color: #505d69;
+}
+
+    .twitter-bs-wizard .twitter-bs-wizard-nav .nav-link.active .step-number {
+        background-color: #2C98F0;
+        color: #fff;
+    }
+
+.twitter-bs-wizard .twitter-bs-wizard-pager-link {
+    padding-top: 24px;
+    padding-right: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+    .twitter-bs-wizard .twitter-bs-wizard-pager-link li {
+        display: inline-block;
+    }
+
+        .twitter-bs-wizard .twitter-bs-wizard-pager-link li a {
+            display: inline-block;
+            padding: .47rem .75rem;
+            background-color: #2C98F0;
+            color: #fff;
+            border-radius: .25rem;
+        }
+
+        .twitter-bs-wizard .twitter-bs-wizard-pager-link li.disabled a {
+            cursor: not-allowed;
+            background-color: #7CC2FC;
+        }
+
+        .twitter-bs-wizard .twitter-bs-wizard-pager-link li.next {
+            float: right;
+        }
+
+        .twitter-bs-wizard .twitter-bs-wizard-pager-link li.finish {
+            float: right;
+        }
+
+.twitter-bs-wizard-tab-content {
+    padding-top: 15px;
+    min-height: 262px;
+}
+
+video, canvas {
+    border: 2px solid rgba(255, 255, 255, 1);
+    background: #263238;
+    height: 198px;
+    width: 100%;
+}
+
+.error {
+    color: red;
+}
+/* Registration Style */
+
 a.navbar-brand {
   white-space: normal;
   text-align: center;
@@ -12,11 +145,11 @@ a {
   color: #0366d6;
 }
 
-.btn-primary {
+/*.btn-primary {
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
-}
+}*/
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
@@ -27,11 +160,12 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+  font-size: 12px;
 }
+
 @media (min-width: 768px) {
   html {
-    font-size: 16px;
+    font-size: 12px;
   }
 }
 

@@ -1,4 +1,28 @@
 $(document).ready(() => {
+    var passwordValid = false;
+    var confirmPswValid = false;
+
+    $('#newPass').on("input", () => {
+        const value = $('#newPass').val();
+        passwordValid = value.length >= 8 && value.length < 50;
+        const isDisable = !passwordValid || !confirmPswValid;
+
+        console.log(passwordValid, confirmPswValid, isDisable);
+        $('#changePasswodBtn').prop('disabled', isDisable);
+        if (!isDisable) $('#warning-text').hide();
+        else $('#warning-text').show();
+    });
+
+    $('#confirmNewPass').on("input", () => {
+        const value = $('#confirmNewPass').val();
+        confirmPswValid = value.length >= 8 && value.length < 50;
+        const isDisable = !passwordValid || !confirmPswValid;
+
+        console.log(passwordValid, confirmPswValid, isDisable);
+        $('#changePasswodBtn').prop('disabled', isDisable);
+        if (!isDisable) $('#warning-text').hide();
+        else $('#warning-text').show();
+    });
 
     $('#changePasswodBtn').click(function () {
         var newPass = $('#newPass').val();

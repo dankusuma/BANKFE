@@ -24,7 +24,20 @@
             tanggal: {
                 required: true,
                 date: true,
-                min: "1950-01-01"
+                min: function (value) {
+                    return "1950-01-01";
+                },
+                max: function (value) {
+                    var today = new Date();
+                    var dob = new Date(value.value);
+                    var date_dob = dob.getFullYear() + '-' + dob.getMonth() + 1 + '-' + dob.getDate();
+                    var datediff = Math.floor((today.getTime() - dob.getTime()) / (1000 * 3600 * 24));
+                    if (datediff > 6209) { // 6209 adalah hari dalam 17 tahun.
+                        return date_dob;
+                    } else {
+                        return dob.setDate(dob.getDate()-6209);
+                    }
+                }
             },
             ibu: {
                 required: true,
@@ -94,7 +107,8 @@
             },
             tanggal: {
                 date: "Tolong input Tanggal Lahir",
-                min: "Tahun lahir harus > 1950"
+                min: "Tahun lahir harus > 1950",
+                max: "Umur tidak valid, harus 17 tahun keatas"
             },
             ibu: {
                 maxlength: "Maksimal 100 karakter",

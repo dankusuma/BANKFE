@@ -23,7 +23,8 @@
             },
             tanggal: {
                 required: true,
-                date: true
+                date: true,
+                min: "1950-01-01"
             },
             ibu: {
                 required: true,
@@ -91,7 +92,10 @@
                 maxlength: "Maksimal 30 karakter",
                 normalizer: "Tolong input tempat lahir yang benar"
             },
-            tanggal: "Tolong input Tanggal Lahir",
+            tanggal: {
+                date: "Tolong input Tanggal Lahir",
+                min: "Tahun lahir harus > 1950"
+            },
             ibu: {
                 maxlength: "Maksimal 100 karakter",
                 normalizer: "Tolong input nama ibu yang benar"

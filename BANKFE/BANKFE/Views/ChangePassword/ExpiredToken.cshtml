@@ -1,0 +1,102 @@
+﻿@{
+    Layout = null;
+    ViewBag.title = "Expired Token";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body class="bg-pattern">
+
+    <div class="bg-overlay"></div>
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5 col-lg-6 col-md-4">
+                    <div class="card">
+                        <div class="card-body py-3 px-5">
+                            <div class="">
+
+                                <div class="row justify-content-center"><img class="mb-4 pt-5" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"></div>
+                                <div class="mb-2 row">
+                                    <h1 class="h3 mb-3 font-weight-normal">Your token expired!</h1>
+                                </div>
+                                <br />
+                                <div class="mb-2 row pt-3">
+                                    <a class="btn btn-lg btn-primary btn-block" href="/ChangePassword/ForgotPassword">Request again?</a>
+                                </div>
+                                <div class="row justify-content-center pt-4 pb-5">
+                                    <label>Don't have access?&nbsp;</label><a href="/Registration" class="link-info">Register now</a>
+                                    <label>&nbsp;or go to&nbsp;</label><a href="/Login" class="link-info">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/node-waves/waves.min.js"></script>
+
+    <script src="~/lib/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js"></script>
+    <script src="~/lib/twitter-bootstrap-wizard/prettify.js"></script>
+
+    <script src="~/js/pages/email-validation.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @*<script type="text/javascript">
+            $(document).ready(function () {
+                let emailValid = false;
+
+                $('#email').on("input", () => {
+                    const value = $('#email').val();
+                    emailValid = !isEmailValid(value);
+
+                    $('#signinsubmit').prop('disabled', emailValid);
+                });
+
+
+                $('#signinsubmit').click(function () {
+
+                    var email = $('#email').val();
+                    if (!document.getElementById('email').validity.valid) {
+                        alert("Invalid email format");
+                    }
+                    else {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/ChangePassword/SendChangePassword?email=' + email,
+                            success: function (data) {
+                                alert(data);
+                            },
+                            error: function (data) {
+                                alert(data);
+                            }
+                        });
+                    }
+                });
+            });
+
+            function getParameterByName(name, url = window.location.href) {
+                name = name.replace(/[\[\]]/g, '\\$&');
+                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                    results = regex.exec(url);
+                if (!results) return null;
+                if (!results[2]) return '';
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }
+        </script>*@
+</body>
+</html>

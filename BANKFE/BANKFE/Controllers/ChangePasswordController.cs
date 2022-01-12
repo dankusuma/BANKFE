@@ -27,17 +27,24 @@ namespace BANKFE.Controllers
 
         public IActionResult Index()
         {
-            string mode = HttpContext.Request.Query["mode"][0];
             string username = HttpContext.Request.Query["username"][0];
-
-            if (mode == "change")
-            {
-                var sha1 = System.Security.Cryptography.SHA1.Create();
-                var hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(username));
-            }
+            string mode = HttpContext.Request.Query["mode"][0];
 
             ViewData["mode"] = mode;
             ViewData["username"] = username;
+
+            if (mode == "create")
+            {
+                string token = HttpContext.Request.Query["token"][0];
+                string reff = HttpContext.Request.Query["reff"][0];
+                ChangePassword changePassword = new ChangePassword(token, username, "", "", mode, reff);
+
+                ViewData["token"] = changePassword.Token;
+                ViewData["reff"] = changePassword.Reff;
+
+                bool isTokenValid = changePassword.IsTokenValid();
+                if (!isTokenValid) return View("ExpiredToken");
+            }
 
             return View();
         }

@@ -17,6 +17,9 @@ for details on configuring this project to bundle and minify static web assets. 
     text-decoration: none;
     color: black;
 }
+[input-type-text="hidden"] {
+    visibility: hidden;
+}
 
 .bg-overlay {
     position: absolute;

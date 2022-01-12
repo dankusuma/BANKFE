@@ -210,6 +210,44 @@
         }
     })
 
+    $("#form3").validate({
+        rules: {
+            foto: {
+                required: true
+            }
+        },
+        messages: {
+            foto: {
+                required: "Mohon ambil foto selfie dahulu"
+            }
+        },
+        highlight: function (element) {
+            $(element).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function (element) {
+            $(element).removeClass('is-invalid').addClass('is-valid');
+        }
+    })
+
+    $("#form4").validate({
+        rules: {
+            video: {
+                required: true
+            }
+        },
+        messages: {
+            video: {
+                required: "Mohon ambil video pernyataan dahulu"
+            }
+        },
+        highlight: function (element) {
+            $(element).removeClass('is-valid').addClass('is-invalid');
+        },
+        unhighlight: function (element) {
+            $(element).removeClass('is-invalid').addClass('is-valid');
+        }
+    })
+
     $("#basic-pills-wizard").bootstrapWizard({
         tabClass: "nav nav-pills nav-justified",
         onTabShow: function (tab, navigation, index) {
@@ -235,6 +273,11 @@
                     return false;
                 }
             } else if (index == 3) {
+                var form3Valid = $("#form3").valid();
+                if (!form3Valid) {
+
+                    return false;
+                }
                 $('#canvas-foto')[0].toBlob(function (blob) {
                     console.log(blob.size / 1024);
                     if (blob.size > 2097152) {
@@ -276,7 +319,7 @@
     startPic.onclick = function () {
         navigator.mediaDevices.getUserMedia(constraintsFoto).then(handleSuccess).catch(handleError);
         $("#start-foto").css({ display: "none" });
-        $('#take-foto').css({ display: "block" });
+        $("#take-foto").css({ display: "block" });
     }
 
     takePic.onclick = function () {
@@ -286,6 +329,8 @@
         $("#frame-foto").css({ display: "none" });
         $("#canvas-foto").css({ display: "block" });
         stopCamera();
+        $("#foto").val("asd");
+        return false;
     };
 
     //Record Video
@@ -337,6 +382,8 @@
             track.stop();
         });
         frameVideo.srcObject = null;
+        $("#video").val("asd");
+        return false;
     }
 
     playRecord.onclick = () => {
@@ -389,6 +436,10 @@
 
     const submitButton = document.querySelector('#submit-form');
     submitButton.onclick = async function () {
+        var form4Valid = $("#form4").valid();
+        if (!form4Valid) {
+            return false;
+        }
         let blob = new Blob(recordedBlobs, { type: 'video/mp4' });
         if (blob.size > 15728640) {
             alert("Selfie + KTP > 2Mb!!!");
@@ -443,7 +494,6 @@
                 videoName: nik + "_" + name + Date.now(),
                 stringVideo: videoString
             };
-
             $.ajax({
                 type: 'POST',
                 url: '/Registration/SubmitRegistration',
@@ -457,7 +507,6 @@
                     alert(data.responseText);
                 }
             });
-
             $.ajax({
                 type: 'POST',
                 url: '/Registration/SubmitUpload',

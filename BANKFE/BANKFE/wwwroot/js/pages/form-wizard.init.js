@@ -497,14 +497,14 @@
                 USERNAME: username,
                 PASSWORD: password,
                 PHONE: handphone,
-                FOTO_KTP_SELFIE: nik + "_" + name + date_dob,
-                VIDEO: nik + "_" + name + date_dob,
+                FOTO_KTP_SELFIE: nik + "_" + name + date_dob +".jpeg",
+                VIDEO: nik + "_" + name + date_dob+".mp4",
                 USER_TYPE: "User"
             };
             var postUpload = {
-                photoName: nik + "_" + name + Date.now(),
+                photoName: nik + "_" + name + date_dob + ".jpeg",
                 stringPhoto: fotoString,
-                videoName: nik + "_" + name + Date.now(),
+                videoName: nik + "_" + name + date_dob + ".mp4",
                 stringVideo: videoString
             };
             //alert(JSON.stringify(postData));
@@ -518,13 +518,13 @@
                     console.log("Data: ");
                     console.log(JSON.stringify(postData));
                     console.log(data.responseText);
-                    alert("Success");
+                    alert("Success registration");
                 },
                 error: function (data) {
                     console.log("Data: ");
                     console.log(JSON.stringify(postData));
                     console.log(data.responseText);
-                    alert("Failed");
+                    alert("Failed registration");
                 }
             });
             $.ajax({
@@ -534,9 +534,11 @@
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
                 success: function (data) {
-                    console.log("Success");
+                    alert("Success upload");
+                    console.log("Success upload");
                 },
                 error: function (data) {
+                    alert("Failed upload");
                     alert(data.responseText);
                 }
             });

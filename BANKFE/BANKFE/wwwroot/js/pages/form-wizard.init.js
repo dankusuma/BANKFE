@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+
+    jQuery.validator.addMethod("lettersonly", function (value, element) {
+        return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
+    }, "Nama harus alfabet semua");
+
+
     $("#form1").validate({
         rules: {
             nik: {
@@ -157,6 +163,7 @@
                 required: true,
                 minlength: 8,
                 maxlength: 20,
+                lettersonly: true,
                 normalizer: function (value) {
                     return $.trim(value);
                 }

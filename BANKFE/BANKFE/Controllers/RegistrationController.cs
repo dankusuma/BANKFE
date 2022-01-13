@@ -38,8 +38,15 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitUpload([FromBody] Upload upload)
         {
-            await _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", upload);
-            return Ok();
+            var taskupload = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", upload);
+            if (taskupload.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return Ok(taskupload.StatusCode);
+            }
+            else
+            {
+                return BadRequest(taskupload.Content);
+            }
         }
     }
 }

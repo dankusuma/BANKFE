@@ -492,7 +492,7 @@
                 PHONE: handphone,
                 FOTO_KTP_SELFIE: nik + "_" + name + date_dob,
                 VIDEO: nik + "_" + name + date_dob,
-                USER_TYPE: "1"
+                USER_TYPE: "User"
             };
             var postUpload = {
                 photoName: nik + "_" + name + Date.now(),

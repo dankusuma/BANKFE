@@ -467,6 +467,10 @@
             var password = $('#password').val();
             var handphone = $('#handphone').val();
 
+
+            var today = new Date();
+            var date_dob = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+
             var postData = {
                 ID: 0,
                 NIK: nik,
@@ -485,15 +489,18 @@
                 EMAIL: email,
                 USERNAME: username,
                 PASSWORD: password,
-                PHONE: handphone
+                PHONE: handphone,
+                FOTO_KTP_SELFIE: nik + "_" + name + date_dob,
+                VIDEO: nik + "_" + name + date_dob,
+                USER_TYPE: "1"
             };
-
             var postUpload = {
                 photoName: nik + "_" + name + Date.now(),
                 stringPhoto: fotoString,
                 videoName: nik + "_" + name + Date.now(),
                 stringVideo: videoString
             };
+            //alert(JSON.stringify(postData));
             $.ajax({
                 type: 'POST',
                 url: '/Registration/SubmitRegistration',
@@ -501,10 +508,16 @@
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
                 success: function (data) {
-                    console.log("Success");
+                    console.log("Data: ");
+                    console.log(JSON.stringify(postData));
+                    console.log(data.responseText);
+                    alert("Success");
                 },
                 error: function (data) {
-                    alert(data.responseText);
+                    console.log("Data: ");
+                    console.log(JSON.stringify(postData));
+                    console.log(data.responseText);
+                    alert("Failed");
                 }
             });
             $.ajax({

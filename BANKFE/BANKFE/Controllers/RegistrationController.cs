@@ -25,8 +25,14 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitRegistration([FromBody] Registration model)
         {
-             await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
-            return Ok();
+            var user =  await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
+            if (user.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return Ok(user.StatusCode);
+            }
+            else {
+                return BadRequest(user.Content);
+            }
         }
 
         [HttpPost]

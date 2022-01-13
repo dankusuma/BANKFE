@@ -22,5 +22,8 @@ namespace BANKFE.Models
         public string USERNAME { get; set; }
         public string PASSWORD { get; set; }
         public string PHONE { get; set; }
+        public string FOTO_KTP_SELFIE { get; set; }
+        public string VIDEO { get; set; }
+        public string USER_TYPE { get; set; }
     }
 }

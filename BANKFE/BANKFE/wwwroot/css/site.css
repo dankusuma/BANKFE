@@ -21,6 +21,13 @@ for details on configuring this project to bundle and minify static web assets. 
     visibility: hidden;
 }
 
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
 .bg-overlay {
     position: absolute;
     height: 100%;

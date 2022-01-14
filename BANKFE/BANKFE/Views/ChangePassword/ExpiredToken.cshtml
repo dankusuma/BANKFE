@@ -13,8 +13,8 @@
     <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
-<body class="bg-pattern">
 
+<body class="bg-pattern">
     <div class="bg-overlay"></div>
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -44,7 +44,6 @@
         </div>
     </div>
 
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/node-waves/waves.min.js"></script>
@@ -55,47 +54,5 @@
     <script src="~/js/pages/email-validation.js"></script>
     <script src="~/js/site.js"></script>
 
-    @*<script type="text/javascript">
-            $(document).ready(function () {
-                let emailValid = false;
-
-                $('#email').on("input", () => {
-                    const value = $('#email').val();
-                    emailValid = !isEmailValid(value);
-
-                    $('#signinsubmit').prop('disabled', emailValid);
-                });
-
-
-                $('#signinsubmit').click(function () {
-
-                    var email = $('#email').val();
-                    if (!document.getElementById('email').validity.valid) {
-                        alert("Invalid email format");
-                    }
-                    else {
-                        $.ajax({
-                            type: 'GET',
-                            url: '/ChangePassword/SendChangePassword?email=' + email,
-                            success: function (data) {
-                                alert(data);
-                            },
-                            error: function (data) {
-                                alert(data);
-                            }
-                        });
-                    }
-                });
-            });
-
-            function getParameterByName(name, url = window.location.href) {
-                name = name.replace(/[\[\]]/g, '\\$&');
-                var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-                    results = regex.exec(url);
-                if (!results) return null;
-                if (!results[2]) return '';
-                return decodeURIComponent(results[2].replace(/\+/g, ' '));
-            }
-        </script>*@
 </body>
 </html>

@@ -335,6 +335,8 @@
         navigator.mediaDevices.getUserMedia(constraintsFoto).then(handleSuccess).catch(handleError);
         $("#start-foto").css({ display: "none" });
         $("#take-foto").css({ display: "block" });
+        $("#frame-foto").css({ display: "block" });
+        $("#canvas-foto").css({ display: "none" });
     }
 
     takePic.onclick = function () {
@@ -343,6 +345,8 @@
         canvasFoto.getContext('2d').drawImage(frameFoto, 0, 0, canvasFoto.width, canvasFoto.height);
         $("#frame-foto").css({ display: "none" });
         $("#canvas-foto").css({ display: "block" });
+        $("#start-foto").css({ display: "block" });
+        $("#take-foto").css({ display: "none" });
         stopCamera();
         $("#foto").val("asd");
         return false;
@@ -358,6 +362,7 @@
     const startRecord = document.querySelector('#start-record');
     const stopRecord = document.querySelector('#stop-record');
     const playRecord = document.querySelector('#play-record');
+    const retakeRecord = document.querySelector('#retake-record');
 
     function handleDataAvailable(event) {
         if (event.data && event.data.size > 0) {
@@ -365,6 +370,18 @@
         }
     }
 
+    retakeRecord.onclick = function retakeRecording() {
+        $("#start-video").css({ display: "block" });
+        $("#play-record").css({ display: "none" });
+        $("#retake-record").css({ display: "none" });
+        $("#frame-video").css({ display: "block" });
+        $("#frame-recorded").css({ display: "none" });
+        $("#frame-recorded").val('');
+        $("#frame-recorded2").css({ display: "none" });
+
+        
+
+    }
     startRecord.onclick = function startRecording() {
         recordedBlobs = [];
         const mimeType = 'video/webm;codecs=vp9,opus';
@@ -387,9 +404,10 @@
     stopRecord.onclick = function stopRecording() {
         mediaRecorder.stop();
         $("#frame-video").css({ display: "none" });
-        $("#frame-recorded").css({ display: "block" });
+        $("#frame-recorded2").css({ display: "block" });
         $("#stop-record").css({ display: "none" });
         $("#play-record").css({ display: "block" });
+        $("#retake-record").css({ display: "block" });
 
         stream = frameVideo.srcObject;
         tracks = stream.getTracks();
@@ -402,6 +420,8 @@
     }
 
     playRecord.onclick = () => {
+        $("#frame-recorded2").css({ display: "none" });
+        $("#frame-recorded").css({ display: "block" });
         const superBuffer = new Blob(recordedBlobs, { type: mimeVideo });
         frameRecorded.src = null;
         frameRecorded.srcObject = null;

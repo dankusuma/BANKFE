@@ -11,7 +11,8 @@
                 required: true,
                 number: true,
                 minlength: 16,
-                maxlength: 16
+                maxlength: 16,
+                remote: "/Registration/ValidateNIK"
             },
             name: {
                 required: true,
@@ -103,6 +104,7 @@
                 number: "Tolong input NIK dengan benar",
                 minlength: "NIK harus 16 karakter",
                 maxlength: "NIK harus 16 karakter",
+                remote: "NIK sudah terdaftar"
             },
             name: {
                 maxlength: "Maksimal 30 karakter",
@@ -157,7 +159,8 @@
         rules: {
             email: {
                 required: true,
-                email: true
+                email: true,
+                remote: "/Registration/ValidateEmail"
             },
             username: {
                 required: true,
@@ -166,7 +169,8 @@
                 lettersonly: true,
                 normalizer: function (value) {
                     return $.trim(value);
-                }
+                },
+                remote: "/Registration/ValidateUsername"
             },
             password: {
                 required: true,
@@ -185,17 +189,20 @@
             },
             handphone: {
                 required: true,
-                number: true
+                number: true,
+                remote: "/Registration/ValidatePhone"
             }
         },
         messages: {
             email: {
-                email: "Format Email salah"
+                email: "Format Email salah",
+                remote: "Email sudah terdaftar"
             },
             username: {
                 minlength: "Username minimal 8 karakter",
                 maxlength: "Username maximal 20 karakter",
-                normalizer: "Tolong input nama yang benar"
+                normalizer: "Tolong input nama yang benar",
+                remote: "Username sudah terdaftar"
             },
             password: {
                 minlength: "Password minimal 8 karakter",
@@ -206,7 +213,8 @@
                 equalTo: "Password tidak sama"
             },
             handphone: {
-                number: "Tolong input No Handphone dengan benar"
+                number: "Tolong input No Handphone dengan benar",
+                remote: "No Handphone sudah terdaftar"
             }
         },
         highlight: function (element) {

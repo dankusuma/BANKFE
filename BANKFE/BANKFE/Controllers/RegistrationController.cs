@@ -48,5 +48,67 @@ namespace BANKFE.Controllers
                 return BadRequest(taskupload.Content);
             }
         }
+
+        [HttpGet]
+        public bool  ValidateEmail([FromQuery] string email)
+        {
+            var checkemail = _httpservices.PostData(_configuration["APIUrl"] + "/User/isEmailDuplicate", new { Email = email });
+
+            if (checkemail.Result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [HttpGet]
+        public bool ValidateUsername([FromQuery] string username)
+        {
+            var checkuser = _httpservices.PostData(_configuration["APIUrl"] + "/User/isUserDuplicate", new { Username = username });
+
+            if (checkuser.Result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [HttpGet]
+        public bool ValidatePhone([FromQuery] string handphone)
+        {
+            var checkphone = _httpservices.PostData(_configuration["APIUrl"] + "/User/isPhoneDuplicate", new { Phone = handphone });
+
+            if (checkphone.Result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        [HttpGet]
+        public bool ValidateNIK([FromQuery] string nik)
+        {
+            var checknik = _httpservices.PostData(_configuration["APIUrl"] + "/User/isNIKDuplicate", new { NIK = nik });
+
+            if (checknik.Result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
     }
 }

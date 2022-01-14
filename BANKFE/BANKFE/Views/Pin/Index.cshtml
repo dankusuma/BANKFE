@@ -64,7 +64,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#submitpin').click(function () {
-                var mode = $('#mode').val();
+                var mode = getParameterByName('mode');
                 var newPin = $('#newPin').val();
                 var confirmPin = $('#confirmPin').val();
                 var username = getParameterByName('username');
@@ -75,19 +75,35 @@
                     alert("Pin Confirmation Not Match");
                 }
                 else {
-                    $.ajax({
-                        type: 'POST',
-                        url: '/Pin/DoCreatePIN',
-                        data: JSON.stringify(postdata),
-                        contentType: 'application/json; charset=utf-8',
-                        datatype: 'json',
-                        success: function (data) {
-                            window.location.href = '/';
-                        },
-                        error: function (data) {
-                            alert(data.responseText);
-                        }
-                    });
+                    if (mode == 'create') {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Pin/DoCreatePIN',
+                            data: JSON.stringify(postdata),
+                            contentType: 'application/json; charset=utf-8',
+                            datatype: 'json',
+                            success: function (data) {
+                                window.location.href = '/';
+                            },
+                            error: function (data) {
+                                alert(data.responseText);
+                            }
+                        });
+                    } else {
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Pin/DoChangePIN',
+                            data: JSON.stringify(postdata),
+                            contentType: 'application/json; charset=utf-8',
+                            datatype: 'json',
+                            success: function (data) {
+                                window.location.href = '/';
+                            },
+                            error: function (data) {
+                                alert(data.responseText);
+                            }
+                        });
+                    }
                 }
             });
         });

@@ -261,6 +261,10 @@ body {
     min-width: 250px;
 }
 
+.setting-content textarea {
+    width:100%;
+}
+
 .list-group .list-item-header {
     font-weight:600;
     background-color:#e5e5e5;

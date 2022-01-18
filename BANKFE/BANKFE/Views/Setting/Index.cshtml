@@ -5,29 +5,61 @@
             <div class="card">
                 <div class="card-header" id="addressHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent">
-                            Collapsible Group Item #1
+                        <button class="btn btn-link text-decoration-none text-dark"  type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent">
+                            Alamat
                         </button>
                     </h2>
                 </div>
 
-                <div id="addressContent" class="collapse show" aria-labelledby="addressHeader" data-parent="#personalDataAccordion">
+                <div id="addressContent" class="collapse" aria-labelledby="addressHeader" data-parent="#personalDataAccordion">
                     <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <form class="setting-content m-0">
+                            <div style="padding:0.75em">
+                                <label>Alamat</label>
+                                <textarea rows="3" placeholder="alamat lengkap..."></textarea>
+                            </div>
+                            <table class="table table-borderless">
+                                <tr class="">
+                                    <td>
+                                        <label>Kelurahan</label>
+                                        <input type="text" placeholder="lurah" />
+                                    </td>
+                                    <td>
+                                        <label>Kecamatan</label>
+                                        <input type="text" placeholder="kecamatan" />
+                                    </td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <label>Kota/Kabupaten</label>
+                                        <input type="text" placeholder="Kota" />
+                                    </td>
+                                    <td>
+                                        <label>Provinsi</label>
+                                        <input type="text" placeholder="provinsi" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-info" type="submit">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header" id="professionHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession">
-                            Collapsible Group Item #2
+                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession">
+                            Pekerjaan
                         </button>
                     </h2>
                 </div>
                 <div id="changeProfession" class="collapse" aria-labelledby="professionHeader" data-parent="#personalDataAccordion">
                     <div class="card-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <form class="setting-content m-0">
+                            <label>Profesi</label>
+                            <input type="text" placeholder="profesi" />
+                            <button class="btn btn-info" type="submit">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>

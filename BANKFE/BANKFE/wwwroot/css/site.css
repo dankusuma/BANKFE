@@ -260,3 +260,9 @@ body {
 .setting-content input[type=text] {
     min-width: 250px;
 }
+
+.list-group .list-item-header {
+    font-weight:600;
+    background-color:#e5e5e5;
+    padding-top: 0.5rem;
+}

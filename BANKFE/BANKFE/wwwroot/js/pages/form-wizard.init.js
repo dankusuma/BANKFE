@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-
+    $('#submit-form2').css({ display: "none" });
     jQuery.validator.addMethod("lettersonly", function (value, element) {
         return this.optional(element) || /^[a-zA-Z]+$/i.test(value);
     }, "Nama harus alfabet semua");
@@ -39,11 +39,11 @@
                     var dob = new Date(value.value);
                     var date_dob = dob.getFullYear() + '-' + (dob.getMonth() + 1) + '-' + dob.getDate();
                     var datediff = Math.floor((today.getTime() - dob.getTime()) / (1000 * 3600 * 24));
-                    
+
                     if (datediff > 6209) { // 6209 adalah hari dalam 17 tahun.
                         return date_dob;
                     } else {
-                        return dob.setDate(dob.getDate()-6209);
+                        return dob.setDate(dob.getDate() - 6209);
                     }
                 }
             },
@@ -379,7 +379,7 @@
         $("#frame-recorded").val('');
         $("#frame-recorded2").css({ display: "none" });
 
-        
+
 
     }
     startRecord.onclick = function startRecording() {
@@ -471,6 +471,8 @@
 
     const submitButton = document.querySelector('#submit-form');
     submitButton.onclick = async function () {
+        $('#submit-form').css({ display: "none" });
+        $('#submit-form2').css({ display: "block" });
         var form4Valid = $("#form4").valid();
         if (!form4Valid) {
             return false;
@@ -525,8 +527,8 @@
                 USERNAME: username,
                 PASSWORD: password,
                 PHONE: handphone,
-                FOTO_KTP_SELFIE: nik + "_" + name + date_dob +".jpeg",
-                VIDEO: nik + "_" + name + date_dob+".mp4",
+                FOTO_KTP_SELFIE: nik + "_" + name + date_dob + ".jpeg",
+                VIDEO: nik + "_" + name + date_dob + ".mp4",
                 USER_TYPE: "User"
             };
             var postUpload = {

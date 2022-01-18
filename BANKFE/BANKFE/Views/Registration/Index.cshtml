@@ -210,7 +210,10 @@
                                         <ul class="pager wizard twitter-bs-wizard-pager-link" style="padding-left: 0px;">
                                             <li class="previous"><a href="javascript: void(0);">Previous</a></li>
                                             <li class="next"><a href="javascript: void(0);">Next</a></li>
-                                            <li class="finish"><a id="submit-form" href="javascript: void(0);">Submit</a></li>
+                                            <li class="finish">
+                                                <a id="submit-form" href="javascript: void(0);" data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#generalModal">Submit</a>
+                                                <a id="submit-form2" href="javascript: void(0);">Submit</a>                                                
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -219,11 +222,34 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <!-- end row -->
             </div>
         </div>
     </div>
+
+<div class="modal fade" id="generalModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                
+            </div>
+            <div class="modal-body">
+                <img src="../images/spinner.gif" class="center"/>
+                <p class="text-center">Processing!</p>
+
+            </div>
+            <div class="modal-footer">
+                
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/node-waves/waves.min.js"></script>

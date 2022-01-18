@@ -37,10 +37,7 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownAvatarButton">
                                 <a class="dropdown-item"><em class="bi bi-house-door-fill mx-3"></em>Dashboard</a>
-                                <a class="dropdown-item text-dark" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-journal mx-3"></em>Menu 1</a>
-                                <a class="dropdown-item text-dark" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-journal mx-3"></em>Menu 2</a>
-                                <a class="dropdown-item text-dark" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-journal mx-3"></em>Menu 3</a>
-                                <a class="dropdown-item text-dark" asp-controller="Home" asp-action="NotReadyPage"><em class="bi bi-gear-fill mx-3"></em>Settings</a>
+                                <a class="dropdown-item text-dark" asp-controller="Setting" asp-action="Index"><em class="bi bi-gear-fill mx-3"></em>Settings</a>
                                 <div class="dropdown-divider"></div>
 
                                 <a href="@Url.Action("Index", "ChangePassword", new { mode = "change", username = username })" class="dropdown-item text-dark">

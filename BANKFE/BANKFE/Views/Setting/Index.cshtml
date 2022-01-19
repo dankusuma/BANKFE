@@ -1,0 +1,81 @@
+﻿<div class="container" style="margin:1em auto">
+    <div class="card p-xl-3">
+        <div class="card-header">Setting Page</div>
+        <div class="accordion" id="personalDataAccordion">
+            <div class="card">
+                <div class="card-header" id="addressHeader">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link text-decoration-none text-dark"  type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent">
+                            Alamat
+                        </button>
+                    </h2>
+                </div>
+
+                <div id="addressContent" class="collapse" aria-labelledby="addressHeader" data-parent="#personalDataAccordion">
+                    <div class="card-body">
+                        <form class="setting-content m-0">
+                            <div style="padding:0.75em">
+                                <label>Alamat</label>
+                                <textarea rows="3" placeholder="alamat lengkap..."></textarea>
+                            </div>
+                            <table class="table table-borderless">
+                                <tr class="">
+                                    <td>
+                                        <label>Kelurahan</label>
+                                        <input type="text" placeholder="lurah" />
+                                    </td>
+                                    <td>
+                                        <label>Kecamatan</label>
+                                        <input type="text" placeholder="kecamatan" />
+                                    </td>
+                                </tr>
+                                <tr class="">
+                                    <td>
+                                        <label>Kota/Kabupaten</label>
+                                        <input type="text" placeholder="Kota" />
+                                    </td>
+                                    <td>
+                                        <label>Provinsi</label>
+                                        <input type="text" placeholder="provinsi" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <button class="btn btn-info" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="professionHeader">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession">
+                            Pekerjaan
+                        </button>
+                    </h2>
+                </div>
+                <div id="changeProfession" class="collapse" aria-labelledby="professionHeader" data-parent="#personalDataAccordion">
+                    <div class="card-body">
+                        <form class="setting-content m-0">
+                            <label>Profesi</label>
+                            <input type="text" placeholder="profesi" />
+                            <button class="btn btn-info" type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-item-header">Account Data</li>
+                <li class="list-group-item">Change Email</li>
+                <li class="list-group-item">Change Password</li>
+                <li class="list-group-item">Change PIN</li>
+            </ul>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item list-item-header">Bank Account</li>
+                <li class="list-group-item">Transaction Authentication</li>
+                <li class="list-group-item">Set Max Transfer Limit</li>
+            </ul>
+        </div>
+    </div>
+</div>

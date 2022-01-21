@@ -408,7 +408,7 @@
         $("#stop-record").css({ display: "none" });
         $("#play-record").css({ display: "block" });
         $("#retake-record").css({ display: "block" });
-
+        $("#submit-form").attr('data-toggle','modal');
         stream = frameVideo.srcObject;
         tracks = stream.getTracks();
         tracks.forEach(function (track) {
@@ -471,8 +471,7 @@
 
     const submitButton = document.querySelector('#submit-form');
     submitButton.onclick = async function () {
-        $('#submit-form').css({ display: "none" });
-        $('#submit-form2').css({ display: "block" });
+        
         var form4Valid = $("#form4").valid();
         if (!form4Valid) {
             return false;
@@ -481,6 +480,8 @@
         if (blob.size > 15728640) {
             alert("Selfie + KTP > 2Mb!!!");
         } else {
+            $('#submit-form').css({ display: "none" });
+            $('#submit-form2').css({ display: "block" });
             let videoBase64 = await blobToBase64();
             let selfieBase64 = $('#canvas-foto')[0].toDataURL("image/jpeg");
             let videoString = videoBase64.split(',')[1];
@@ -537,18 +538,25 @@
                 videoName: nik + "_" + name + date_dob + ".mp4",
                 stringVideo: videoString
             };
-            //alert(JSON.stringify(postData));
+            var postdata = JSON.stringify(postData);
+            var postupload = JSON.stringify(postUpload);
+            var post = {
+                user: postData,
+                upload: postUpload
+            };
+            var post2 = JSON.stringify(post);
+            //var post = postdata + "splithere123!" + postupload;
             $.ajax({
                 type: 'POST',
-                url: '/Registration/SubmitRegistration',
-                data: JSON.stringify(postData),
+                url: "/Registration/SubmitRegistration",
+                data: post2,
                 contentType: 'application/json; charset=utf-8',
                 datatype: 'json',
                 success: function (data) {
                     console.log("Data: ");
                     console.log(JSON.stringify(postData));
                     console.log(data.responseText);
-                    alert("Success registration");
+                    window.location.href = '/Login';
                 },
                 error: function (data) {
                     console.log("Data: ");
@@ -557,21 +565,21 @@
                     alert("Failed registration");
                 }
             });
-            $.ajax({
-                type: 'POST',
-                url: '/Registration/SubmitUpload',
-                data: JSON.stringify(postUpload),
-                contentType: 'application/json; charset=utf-8',
-                datatype: 'json',
-                success: function (data) {
-                    alert("Success upload");
-                    console.log("Success upload");
-                },
-                error: function (data) {
-                    alert("Failed upload");
-                    alert(data.responseText);
-                }
-            });
+            //$.ajax({
+            //    type: 'POST',
+            //    url: '/Registration/SubmitUpload',
+            //    data: JSON.stringify(postUpload),
+            //    contentType: 'application/json; charset=utf-8',
+            //    datatype: 'json',
+            //    success: function (data) {
+            //        alert("Success upload");
+            //        console.log("Success upload");
+            //    }
+            //    error: function (data) {
+            //        alert("Failed upload");
+            //        alert(data.responseText);
+            //    }
+            //});
         }
     }
 });

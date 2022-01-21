@@ -2,6 +2,7 @@
 using BANKFE.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Nancy.Json;
 using System.Threading.Tasks;
 
 namespace BANKFE.Controllers
@@ -23,15 +24,21 @@ namespace BANKFE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitRegistration([FromBody] Registration model)
+        public async Task<IActionResult> SubmitRegistration([FromBody] RegisterUpload model)
         {
-            var user =  await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model);
-            if (user.StatusCode == System.Net.HttpStatusCode.OK)
+            //string[] split = jsonstring.Split("splithere123!");
+            //Registration model = Newtonsoft.Json.JsonConvert.DeserializeObject<Registration>(split[0]);
+            //Upload upload = Newtonsoft.Json.JsonConvert.DeserializeObject<Upload>(split[1]);
+            var user = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Add", model.user);
+            var taskupload = await _httpservices.PostData(_configuration["APIUrl"] + "/User/Upload", model.upload);
+
+            if (user.StatusCode == System.Net.HttpStatusCode.OK && taskupload.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                return Ok(user.StatusCode);
+                return Ok("Registration Status Code: " + user.StatusCode + ", Upload Status Code: " + taskupload.StatusCode);
             }
-            else {
-                return BadRequest(user.Content);
+            else
+            {
+                return BadRequest("Registration Content: " + user.Content + ", Upload Content: " + taskupload.Content);
             }
         }
 
@@ -50,7 +57,7 @@ namespace BANKFE.Controllers
         }
 
         [HttpGet]
-        public bool  ValidateEmail([FromQuery] string email)
+        public bool ValidateEmail([FromQuery] string email)
         {
             var checkemail = _httpservices.PostData(_configuration["APIUrl"] + "/User/isEmailDuplicate", new { Email = email });
 

@@ -1,11 +1,15 @@
-﻿<div class="container" style="margin:1em auto">
+﻿@{
+    string username = (string)ViewData["username"];
+}
+
+<div class="container" style="margin:1em auto">
     <div class="card p-xl-3">
         <div class="card-header">Setting Page</div>
         <div class="accordion" id="personalDataAccordion">
             <div class="card">
                 <div class="card-header" id="addressHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link text-decoration-none text-dark"  type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent">
+                        <button class="btn btn-link text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent" style="display: block; width: 100%">
                             Alamat
                         </button>
                     </h2>
@@ -48,7 +52,7 @@
             <div class="card">
                 <div class="card-header" id="professionHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession">
+                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession" style="display: block; width: 100%">
                             Pekerjaan
                         </button>
                     </h2>
@@ -67,8 +71,16 @@
             <ul class="list-group list-group-flush">
                 <li class="list-group-item list-item-header">Account Data</li>
                 <li class="list-group-item">Change Email</li>
-                <li class="list-group-item">Change Password</li>
-                <li class="list-group-item">Change PIN</li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("Index", "PIN", new { mode = "edit", username = username })" class="dark-nav-item-link">
+                        Change PIN
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="@Url.Action("Index", "ChangePassword", new { mode = "change", username = username })" class="dark-nav-item-link">
+                        Change Password
+                    </a>
+                </li>
             </ul>
 
             <ul class="list-group list-group-flush">

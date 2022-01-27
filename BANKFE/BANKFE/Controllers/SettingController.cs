@@ -51,5 +51,26 @@ namespace BANKFE.Controllers
             }
             return RedirectToAction("Index", "Setting");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeJob([Bind("JOB")] ChangeJob change)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(change);
+            }
+
+            var user = User as ClaimsPrincipal;
+            string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
+            change.USERNAME = username;
+
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/ChangeData/ChangeAddress", change);
+
+            if ((int)result.StatusCode != 200)
+            {
+                return Unauthorized(result.Content.ReadAsStringAsync().Result);
+            }
+            return RedirectToAction("Index", "Setting");
+        }
     }
 }

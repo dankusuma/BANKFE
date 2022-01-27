@@ -1,4 +1,6 @@
-﻿@{
+﻿@model BANKFE.Models.ChangeData.ChangeAddress;
+
+@{
     string username = (string)ViewData["username"];
 }
 
@@ -17,33 +19,31 @@
 
                 <div id="addressContent" class="collapse" aria-labelledby="addressHeader" data-parent="#personalDataAccordion">
                     <div class="card-body">
-                        <form class="setting-content m-0">
-                            <div style="padding:0.75em">
-                                <label>Alamat</label>
-                                <textarea rows="3" placeholder="alamat lengkap..."></textarea>
+                        <form class="setting-content m-0" asp-action="ChangeAddress" method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly">
+
                             </div>
-                            <table class="table table-borderless">
-                                <tr class="">
-                                    <td>
-                                        <label>Kelurahan</label>
-                                        <input type="text" placeholder="lurah" />
-                                    </td>
-                                    <td>
-                                        <label>Kecamatan</label>
-                                        <input type="text" placeholder="kecamatan" />
-                                    </td>
-                                </tr>
-                                <tr class="">
-                                    <td>
-                                        <label>Kota/Kabupaten</label>
-                                        <input type="text" placeholder="Kota" />
-                                    </td>
-                                    <td>
-                                        <label>Provinsi</label>
-                                        <input type="text" placeholder="provinsi" />
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="form-group">
+                                <label asp-for="ADDRESS" class="control-label"></label>
+                                <input asp-for="ADDRESS" class="form-control" />
+                                <span asp-validation-for="ADDRESS" class="text-danger"></span>
+
+                                <label asp-for="KELURAHAN" class="control-label"></label>
+                                <input asp-for="KELURAHAN" class="form-control" />
+                                <span asp-validation-for="KELURAHAN" class="text-danger"></span>
+
+                                <label asp-for="KECAMATAN" class="control-label"></label>
+                                <input asp-for="KECAMATAN" class="form-control" />
+                                <span asp-validation-for="KECAMATAN" class="text-danger"></span>
+
+                                <label asp-for="KABUPATEN_KOTA" class="control-label"></label>
+                                <input asp-for="KABUPATEN_KOTA" class="form-control" />
+                                <span asp-validation-for="KABUPATEN_KOTA" class="text-danger"></span>
+
+                                <label asp-for="PROVINCE" class="control-label"></label>
+                                <input asp-for="PROVINCE" class="form-control" />
+                                <span asp-validation-for="PROVINCE" class="text-danger"></span>
+                            </div>
                             <button class="btn btn-info" type="submit">Submit</button>
                         </form>
                     </div>

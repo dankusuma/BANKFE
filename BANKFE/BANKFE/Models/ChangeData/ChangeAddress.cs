@@ -8,6 +8,8 @@ namespace BANKFE.Models.ChangeData
 {
     public class ChangeAddress
     {
+        public string TOKEN { get; set; }
+
         [Display(Name = "Username")]
         public string USERNAME { get; set; }
 

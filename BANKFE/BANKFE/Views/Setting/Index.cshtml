@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header" id="addressHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent" style="display: block; width: 100%">
+                        <button class="btn btn-link text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#addressContent" aria-expanded="true" aria-controls="addressContent" style="display: block; width: 100%; text-align: left;">
                             Alamat
                         </button>
                     </h2>
@@ -52,7 +52,7 @@
             <div class="card">
                 <div class="card-header" id="professionHeader">
                     <h2 class="mb-0">
-                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession" style="display: block; width: 100%">
+                        <button class="btn btn-link collapsed text-decoration-none text-dark" type="button" data-toggle="collapse" data-target="#changeProfession" aria-expanded="false" aria-controls="changeProfession" style="display: block; width: 100%; text-align: left; ">
                             Pekerjaan
                         </button>
                     </h2>
@@ -70,7 +70,7 @@
 
             <ul class="list-group list-group-flush">
                 <li class="list-group-item list-item-header">Account Data</li>
-                <li class="list-group-item">Change Email</li>
+                <li class="list-group-item"><a class="dark-nav-item-link" asp-controller="Home" asp-action="NotReadyPage">Change Email</a></li>
                 <li class="list-group-item">
                     <a href="@Url.Action("Index", "PIN", new { mode = "edit", username = username })" class="dark-nav-item-link">
                         Change PIN

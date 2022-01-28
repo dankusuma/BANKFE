@@ -4,5 +4,7 @@
     {
         string Title { get; set; }
         string Desc { get; set; }
+
+        string GetMessage();
     }
 }

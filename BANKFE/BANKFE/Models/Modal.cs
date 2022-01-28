@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 
 namespace BANKFE.Models
 {
-    public class ModalContent : IModal
+    public class Modal : IModal
     {
         public string Title { get; set; }
         public string Desc { get; set; }
+
+        public string GetMessage() => Desc;
     }
 }

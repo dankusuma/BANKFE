@@ -1,4 +1,6 @@
-﻿@{
+﻿@model User; 
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -16,14 +18,17 @@
         <partial name="Items/_AccountItem" model='new AccountItemModel { ControllerName = "Home", ActionName = "NotReadyPage" };' />
     </div>
 
-    @*<button type="button" 
-            class="btn btn-primary" 
-            data-toggle="modal" 
-            data-target="#warningLogoutModal">
-        Call Modal
-    </button>*@
+    @*<button type="button"
+                class="btn btn-primary"
+                data-toggle="modal"
+                data-target="#warningLogoutModal">
+            Call Modal
+        </button>*@
 
-    <partial name="UI/_Modal" model='new Modal{ Title = "Selamat!", Desc = "Selamat! Akun anda sudah ter verifikasi dan dinyatakan valid oleh admin.\nSekarang anda bisa memakai semua fitur yang ada di aplikasi ini."}' />
+    @if (Model.IS_VALIDATE && !Model.IS_ACTIVE)
+    {
+        <partial name="UI/_Modal" model='new Modal{ Title = "Selamat!", Desc = "Selamat! Akun anda sudah ter verifikasi dan dinyatakan valid oleh admin.\nSekarang anda bisa memakai semua fitur yang ada di aplikasi ini."}' />
+    }
 
     <div style="width: 100%">
         <h3>Transaksi</h3>

@@ -1,4 +1,4 @@
-﻿namespace BANKFE.Models
+﻿ namespace BANKFE.Models
 {
     public class PinModel
     {

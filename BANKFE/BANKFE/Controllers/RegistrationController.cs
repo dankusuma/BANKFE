@@ -2,7 +2,6 @@
 using BANKFE.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Nancy.Json;
 using System.Threading.Tasks;
 
 namespace BANKFE.Controllers

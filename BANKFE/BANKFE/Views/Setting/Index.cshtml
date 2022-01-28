@@ -1,4 +1,4 @@
-﻿@model BANKFE.Models.ChangeData.ChangeAddress;
+﻿@model BANKFE.Models.ChangeData.ChangeData;
 
 @{
     string username = (string)ViewData["username"];
@@ -59,10 +59,17 @@
                 </div>
                 <div id="changeProfession" class="collapse" aria-labelledby="professionHeader" data-parent="#personalDataAccordion">
                     <div class="card-body">
-                        <form class="setting-content m-0">
-                            <label>Profesi</label>
-                            <input type="text" placeholder="profesi" />
-                            <button class="btn btn-info" type="submit">Submit</button>
+                        <form class="setting-content m-0" asp-action="ChangeJob" method="post">
+                            <div class="text-danger" asp-validation-summary="ModelOnly">
+
+                            </div>
+                            <div class="form-group">
+                                <select class="form-control" asp-for="JOB" asp-items="@ViewBag.Occupations">
+                                    <option>Please select one</option>
+                                </select>
+
+                                <button class="btn btn-info" type="submit">Submit</button>
+                            </div>
                         </form>
                     </div>
                 </div>

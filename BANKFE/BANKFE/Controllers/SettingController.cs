@@ -1,6 +1,7 @@
 ﻿using BANKFE.Models.ChangeData;
 using BANKFE.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,19 @@ namespace BANKFE.Controllers
             string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
 
             ViewData["username"] = username;
+            ViewBag.Occupations = new List<SelectListItem>()
+            {
+                new SelectListItem {Text="PNS", Value="PNS"},
+                new SelectListItem {Text="Polri", Value="Polri"},
+                new SelectListItem {Text="Karyawan", Value="Karyawan"},
+                new SelectListItem {Text="Wiraswasta", Value="Wiraswasta"},
+            };
 
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeAddress([Bind("ADDRESS", "KELURAHAN", "KECAMATAN", "KABUPATEN_KOTA", "PROVINCE")] ChangeAddress changeAdd)
+        public async Task<IActionResult> ChangeAddress([Bind("ADDRESS", "KELURAHAN", "KECAMATAN", "KABUPATEN_KOTA", "PROVINCE")] ChangeData changeAdd)
         {
             if (!ModelState.IsValid)
             {
@@ -42,7 +50,6 @@ namespace BANKFE.Controllers
             var user = User as ClaimsPrincipal;
             string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
             changeAdd.USERNAME = username;
-            changeAdd.TOKEN = "";
             var result = await _httpservices.PostData(_configuration["APIUrl"] + "/ChangeData/ChangeAddress", changeAdd);
 
             if ((int)result.StatusCode != 200)
@@ -53,7 +60,7 @@ namespace BANKFE.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> ChangeJob([Bind("JOB")] ChangeJob change)
+        public async Task<IActionResult> ChangeJob([Bind("JOB")] ChangeData change)
         {
             if (!ModelState.IsValid)
             {
@@ -64,7 +71,7 @@ namespace BANKFE.Controllers
             string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
             change.USERNAME = username;
 
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/ChangeData/ChangeAddress", change);
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/ChangeData/ChangeJob", change);
 
             if ((int)result.StatusCode != 200)
             {

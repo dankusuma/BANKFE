@@ -30,7 +30,8 @@ $(document).ready(() => {
         var username = getParameterByName('username');
         var token = getParameterByName('token');
         var mode = getParameterByName('mode');
-        var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token, Mode: mode }
+        var reff = getParameterByName('reff');
+        var postdata = { NewPassword: newPass, ConfirmPassword: confirmNewPass, UserName: username, Token: token, Mode: mode, Reff: reff }
 
         if (newPass != confirmNewPass) {
             alert("Password Confirmation Not Match");

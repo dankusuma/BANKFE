@@ -33,7 +33,7 @@ namespace BANKFE.Controllers
             ViewData["mode"] = mode;
             ViewData["username"] = username;
 
-            if (mode == "create")
+            if (mode == "forget")
             {
                 string token = HttpContext.Request.Query["token"][0];
                 string reff = HttpContext.Request.Query["reff"][0];
@@ -64,7 +64,7 @@ namespace BANKFE.Controllers
         [HttpGet]
         public async Task<IActionResult> SendChangePassword([FromQuery] string email)
         {
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/ForgotPassword", new { Email = email });
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/Password/ForgotPassword", new { Email = email });
             if ((int)result.StatusCode != 200)
             {
                 return Unauthorized(await result.Content.ReadAsStringAsync());

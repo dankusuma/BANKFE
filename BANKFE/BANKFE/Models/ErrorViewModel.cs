@@ -6,6 +6,7 @@ namespace BANKFE.Models
     {
         public string Title { get; set; }
         public string Desc { get; set; }
+        public string cssStyle { get => "text-danger"; }
 
         public string RequestId { get; set; }
         public bool ShowRequestId { get { return !string.IsNullOrEmpty(RequestId); } }

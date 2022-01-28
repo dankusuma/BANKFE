@@ -52,8 +52,8 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<IActionResult> DoChangePassword([FromBody] ChangePasswordViewModel param)
         {
-            ChangePassword changePassword = new ChangePassword(param.Token, param.UserName, "", param.NewPassword, param.Mode, param.Reff);
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/ChangePassword", changePassword);
+            ChangePassword changePassword = new ChangePassword(param.Token, param.UserName, param.NewPassword, param.NewPassword, param.Mode, param.Reff);
+            var result = await _httpservices.PatchData(_configuration["APIUrl"] + "/Password/ChangePassword", changePassword);
             if ((int)result.StatusCode != 200)
             {
                 return Unauthorized(result.Content.ReadAsStringAsync().Result);

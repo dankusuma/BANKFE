@@ -25,10 +25,20 @@ namespace BANKFE.Services
             Console.WriteLine("test");
             return await ress.Content.ReadAsStringAsync();
         }
+
         public async Task<HttpResponseMessage> PostData(string url, object data)
         {
-
             var httpress = await _httpClient.PostAsync(url, new StringContent(
+            JsonSerializer.Serialize(data),
+            Encoding.UTF8,
+            Application.Json));
+
+            return httpress;
+        }
+
+        public async Task<HttpResponseMessage> PatchData(string url, object data)
+        {
+            var httpress = await _httpClient.PatchAsync(url, new StringContent(
             JsonSerializer.Serialize(data),
             Encoding.UTF8,
             Application.Json));

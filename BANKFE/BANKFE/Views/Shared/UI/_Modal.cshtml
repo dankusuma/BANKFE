@@ -1,9 +1,9 @@
-﻿@model ErrorViewModel
+﻿@model IModal
 
-@*Paste this to the main page for calling this modal (I think it's better to not put this together in same file)
+@*Paste this to the main page for calling this modal (I think it's better to not put this together in same file) *@
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generalModal">
     Call Modal
-</button>*@
+</button>
 
 
 <!-- Modal -->
@@ -17,7 +17,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p class="text-danger">@Model.Desc<br />ERROR:@Model.RequestId</p>
+                <p class="text-danger">@Model.GetMessage()</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

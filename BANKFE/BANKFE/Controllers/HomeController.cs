@@ -34,14 +34,19 @@ namespace BANKFE.Controllers
         {
             var user = User as ClaimsPrincipal;
             string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
+            string isActive = user.Claims.Where(c => c.Type == "is_active").Select(x => x.Value).FirstOrDefault();
+            string isAuth = user.Claims.Where(c => c.Type == "is_auth").Select(x => x.Value).FirstOrDefault();
             string pinStatus = DoPINStatus(username).Result;
+
 
             ViewData["username"] = username;
 
-            if (pinStatus == "true")
+            if (pinStatus == "true") return View(new User
             {
-                return View();  /// Redirect to dashboard
-            }
+                USERNAME = username,
+                IS_VALIDATE = !string.IsNullOrEmpty(isAuth) && isAuth.ToLower() == "true",
+                IS_ACTIVE = !string.IsNullOrEmpty(isActive) && isActive.ToLower() == "true"
+            });  /// Redirect to dashboard
             else
             {
                 return RedirectToAction("Index", "Pin", new { mode = "create", username = username });   /// Redirect to PIN page

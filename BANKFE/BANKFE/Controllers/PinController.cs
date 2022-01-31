@@ -12,6 +12,7 @@ namespace BANKFE.Controllers
     {
         private readonly HttpService _httpservices;
         private readonly IConfiguration _configuration;
+
         public PinController(HttpService httpservice, IConfiguration configuration)
         {
             _httpservices = httpservice;
@@ -20,33 +21,54 @@ namespace BANKFE.Controllers
 
         public IActionResult Index()
         {
-            ViewData["mode"] = HttpContext.Request.Query["mode"][0];
-            ViewData["username"] = HttpContext.Request.Query["username"][0];
-            return View();
+            string username = HttpContext.Request.Query["username"][0];
+            string mode = HttpContext.Request.Query["mode"][0];
+
+            ViewData["mode"] = mode;
+            ViewData["username"] = username;
+
+            return View();  /// Redirect to dashboard
+
         }
 
         [HttpPost]
         public async Task<IActionResult> DoCreatePIN([FromBody] PinViewModel param)
         {
-            PinModel createPin = new PinModel(param.Token, param.UserName, param.NewPin, param.ConfirmPin);
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/CreatePIN", createPin);
+            PinModel createPin = new(param.UserName, param.NewPin);
+
+            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/Pin/CreatePIN", createPin);
+
             if ((int)result.StatusCode != 200)
             {
                 return Unauthorized(result.Content.ReadAsStringAsync().Result);
             }
+
             return Ok(result.Content.ReadAsStringAsync().Result);
         }
 
         [HttpPost]
         public async Task<IActionResult> DoChangePIN([FromBody] PinViewModel param)
         {
-            PinModel changePin = new PinModel(param.Token, param.UserName, param.NewPin, param.ConfirmPin);
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/ChangePIN", changePin);
+            PinModel changePin = new(param.UserName, param.NewPin);
+
+            var result = await _httpservices.PatchData(_configuration["APIUrl"] + "/Pin/ChangePIN", changePin);
+
             if ((int)result.StatusCode != 200)
             {
                 return Unauthorized(result.Content.ReadAsStringAsync().Result);
             }
+
             return Ok(result.Content.ReadAsStringAsync().Result);
+        }
+
+        [HttpGet]
+        public async Task<string> DoPINStatus(string username)
+        {
+            string status = "false";
+
+            status = await _httpservices.GetData(_configuration["APIUrl"] + "/Pin/PINStatus?username=" + username);
+
+            return status;
         }
     }
 }

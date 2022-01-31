@@ -42,6 +42,8 @@ namespace BANKFE.Controllers
                         new Claim(ClaimTypes.Name,token.Claims.First(c => c.Type == ClaimTypes.Name).Value),
                         new Claim(ClaimTypes.Role, token.Claims.First(c => c.Type == ClaimTypes.Role).Value),
                         new Claim(ClaimTypes.Authentication, result.Content.ReadAsStringAsync().Result),
+                        new Claim("is_active", token.Claims.First(c => c.Type == "is_active").Value),
+                        new Claim("is_auth", token.Claims.First(c => c.Type == "is_auth").Value),
                         new Claim("pin_status", token.Claims.First(c => c.Type == "pin_status").Value)
             };
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

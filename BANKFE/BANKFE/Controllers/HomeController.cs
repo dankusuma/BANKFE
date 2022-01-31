@@ -40,6 +40,8 @@ namespace BANKFE.Controllers
 
 
             ViewData["username"] = username;
+            ViewData["isActive"] = isActive;
+            ViewData["isAuth"] = isAuth;
 
             if (pinStatus == "true") return View(new User
             {

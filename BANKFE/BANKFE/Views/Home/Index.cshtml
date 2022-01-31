@@ -1,7 +1,12 @@
-﻿@model User; 
+﻿@model User;
 
 @{
     ViewData["Title"] = "Home Page";
+    string auth = (string)ViewData["isAuth"];
+    string active = (string)ViewData["isActive"];
+
+    bool isActive = !string.IsNullOrEmpty(active) && active.ToLower() == "true";
+    bool isAuth = !string.IsNullOrEmpty(auth) && auth.ToLower() == "true";
 }
 
 @*<div class="text-center">
@@ -25,14 +30,28 @@
             Call Modal
         </button>*@
 
-    @if (Model.IS_VALIDATE && !Model.IS_ACTIVE)
+    @if (isAuth)
     {
-        <partial name="UI/_Modal" model='new Modal{ Title = "Selamat!", Desc = "Selamat! Akun anda sudah ter verifikasi dan dinyatakan valid oleh admin.\nSekarang anda bisa memakai semua fitur yang ada di aplikasi ini."}' />
+        <p onload="showModal()">
+            is auth: @isAuth <br />
+            is active: @isActive
+        </p>
+        @Html.Hidden("auth_auth", isAuth);
+        @Html.Hidden("auth_active", isActive);
+
+        if (!isActive)
+        {
+            <partial name="UI/_Modal"
+                     model='new Modal{
+                        Title = "Selamat!",
+                        Desc = "Selamat! Akun anda sudah ter verifikasi dan dinyatakan valid oleh admin.\n" +
+                        "Sekarang anda bisa memakai semua fitur yang ada di aplikasi ini.",
+                        callback = "JavaScript: triggerActiveValue(100)"}' />
+        }
     }
 
     <div style="width: 100%">
         <h3>Transaksi</h3>
-
         <table class="table table-sm table-borderless">
             <thead class="thead text-sm mb-5">
                 <tr>
@@ -60,3 +79,36 @@
         </table>
     </div>
 </div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/node-waves/waves.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+
+<script>
+    const showModal = () => {
+        $('#generalModal').show();
+    }
+
+    const triggerActiveValue = delay => {
+        console.log('asu!');
+        setTimeout(() => {
+            cosnole.log('cecek!');
+            $.ajax({
+                type: "POST",
+                url: "Home/TriggerActiveFlag",
+                data: @Model,
+                contentType: "application/json; charset=utf-8",
+                dataType: "text",
+                success: response => {
+                    console.log(response);
+                },
+                failure: response => {
+                    console.log(response);
+                },
+                error: response => {
+                    console.log(response);
+                }
+            });
+            }, 500);
+    };
+</script>

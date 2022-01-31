@@ -1,19 +1,20 @@
-﻿ namespace BANKFE.Models
+﻿namespace BANKFE.Models
 {
     public class PinModel
     {
-        public PinModel(string token, string userName, string pin, string new_pin)
+        public PinModel(string username)
         {
-            Token = token;
-            UserName = userName;
-            Pin = pin;
-            New_Pin = new_pin;
+            UserName = username;
         }
 
-        public string Token { get; set; }
+        public PinModel(string username, string pin)
+        {
+            UserName = username;
+            Pin = pin;
+        }
+
         public string UserName { get; set; }
         public string Pin { get; set; }
-        public string New_Pin { get; set; }
     }
 }
 

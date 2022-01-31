@@ -18,11 +18,15 @@ namespace BANKFE.Controllers
         private readonly HttpService _httpservices;
         private readonly IConfiguration _configuration;
 
+        private readonly PinController _pinController;
+
         public HomeController(ILogger<HomeController> logger, HttpService httpservices, IConfiguration configuration)
         {
             _logger = logger;
             _httpservices = httpservices;
             _configuration = configuration;
+
+            _pinController = new(httpservices, configuration);
         }
 
         [Authorize]
@@ -34,8 +38,14 @@ namespace BANKFE.Controllers
 
             ViewData["username"] = username;
 
-            if (pinStatus == "true") return View();  /// Redirect to dashboard
-            else return RedirectToAction("Index", "Pin", new { mode = "create", username = username });   /// Redirect to PIN page
+            if (pinStatus == "true")
+            {
+                return View();  /// Redirect to dashboard
+            }
+            else
+            {
+                return RedirectToAction("Index", "Pin", new { mode = "create", username = username });   /// Redirect to PIN page
+            }
         }
 
         public IActionResult NotReadyPage()
@@ -57,13 +67,8 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<string> DoPINStatus(string username)
         {
-            string status = "false";
-            PinModel changePin = new PinModel("", username, "", "");
-            var result = await _httpservices.PostData(_configuration["APIUrl"] + "/User/PINStatus", changePin);
-            if ((int)result.StatusCode == 200)
-            {
-                return status = result.Content.ReadAsStringAsync().Result;
-            }
+            string status = await _pinController.DoPINStatus(username);
+
             return status;
         }
     }

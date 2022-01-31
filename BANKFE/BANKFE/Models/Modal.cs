@@ -10,6 +10,7 @@ namespace BANKFE.Models
         public string Title { get; set; }
         public string Desc { get; set; }
         public string cssStyle { get => "text-info"; }
+        public string callback { get; set; }
 
         public string GetMessage() => Desc;
     }

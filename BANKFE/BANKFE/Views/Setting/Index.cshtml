@@ -4,6 +4,7 @@
     string username = (string)ViewData["username"];
 }
 
+@Html.Hidden("username", username, new { @id = "username" })
 <div class="container" style="margin:1em auto">
     <div class="card p-xl-3">
         <div class="card-header">Setting Page</div>
@@ -61,11 +62,12 @@
                     <div class="card-body">
                         <form class="setting-content m-0" asp-action="ChangeJob" method="post">
                             <div class="text-danger" asp-validation-summary="ModelOnly">
-
                             </div>
                             <div class="form-group">
                                 <select class="form-control" asp-for="JOB" asp-items="@ViewBag.Occupations">
-                                    <option>Please select one</option>
+                                    <option>
+                                        Pilih pekerjaan baru anda
+                                    </option>
                                 </select>
 
                                 <button class="btn btn-info" type="submit">Submit</button>
@@ -84,8 +86,18 @@
                     </a>
                 </li>
                 <li class="list-group-item">
+                    <a href="#" class="dark-nav-item-link" onclick="swalChangePIN('edit')">
+                        Change PIN (Sweet Alert)
+                    </a>
+                </li>
+                <li class="list-group-item">
                     <a href="@Url.Action("Index", "ChangePassword", new { mode = "change", username = username })" class="dark-nav-item-link">
                         Change Password
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    <a href="#" class="dark-nav-item-link" onclick="swalChangePassword('change')">
+                        Change Password (Sweet Alert)
                     </a>
                 </li>
             </ul>
@@ -98,3 +110,145 @@
         </div>
     </div>
 </div>
+<script>
+    async function swalChangePIN(mode) {
+        var usr = $("#username").val();
+
+        const { value: formValues } = await Swal.fire({
+            title: 'Change PIN',
+            html:
+                '<input type="password" id="newPin" class= "swal2-input" placeholder="Input pin" required="" autofocus="" maxlength="6" autocomplete="off" /s>' +
+                '<input type="password" id="confirmPin" class="swal2-input" placeholder="Confirm pin" required="" maxlength="6" autocomplete="off" />',
+            focusConfirm: false,
+            preConfirm: () => {
+                var pin1 = document.getElementById('newPin').value;
+                var pin2 = document.getElementById('confirmPin').value;
+
+                if (pin1 != pin2) {
+                    Swal.fire("Warning", "Confirmation pin does not match", "warning");
+                }
+
+                return { "username": usr, "newpin": document.getElementById('newPin').value }
+            }
+        })
+
+        if (formValues) {
+            console.log(formValues);
+            console.log(JSON.stringify(formValues));
+
+            if (mode == "create") {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Pin/DoCreatePIN',
+                    data: JSON.stringify(formValues),
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        window.location.href = '/';
+                        //Swal.fire("", "", "success");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'PIN created successfully'
+                        })
+                    },
+                    error: function (data) {
+                        //alert(data.responseText);
+                        Swal.fire(data.responseText);
+                    }
+                });
+            } else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/Pin/DoChangePIN',
+                    data: JSON.stringify(formValues),
+                    contentType: 'application/json; charset=utf-8',
+                    datatype: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        //window.location.href = '/';
+                        //Swal.fire("", "Sukses ganti PIN", "success");
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'PIN changed successfully'
+                        })
+                    },
+                    error: function (data) {
+                        //alert(data.responseText);
+                        Swal.fire("", data.responseText, "error");
+                    }
+                });
+            }
+        }
+    }
+
+    async function swalChangePassword(mode) {
+        var usr = $("#username").val();
+
+        const { value: formValues } = await Swal.fire({
+            title: 'Change Password',
+            html:
+                '<input type="password" id="newPass" class="swal2-input" placeholder="New password" required="" autofocus="" />' +
+                '<input type="password" id="confirmNewPass" class="swal2-input" placeholder="Confirm new password" required="" />',
+            focusConfirm: false,
+            preConfirm: () => {
+                var pin1 = document.getElementById('newPass').value;
+                var pin2 = document.getElementById('confirmNewPass').value;
+
+                if (pin1 == "") {
+                    Swal.fire("Warning", "Password must be filled", "warning");
+                }
+
+                if (pin1 != pin2) {
+                    Swal.fire("Warning", "Password confirmation not match", "warning");
+                }
+
+                return { "username": usr, "newpassword": document.getElementById('newPass').value }
+            }
+        })
+
+        if (formValues) {
+            console.log(formValues);
+            console.log(JSON.stringify(formValues));
+
+            $.ajax({
+                type: 'POST',
+                url: '/ChangePassword/DoChangePassword',
+                data: JSON.stringify(formValues),
+                contentType: 'application/json; charset=utf-8',
+                datatype: 'json',
+                success: function (data) {
+                    window.location.href = '/login?status=success&message=Password changed successfully';
+                },
+                error: function (data) {
+                    //alert(data.responseText);
+                    Swal.fire("", data.responseText, "error");
+                }
+            });
+        }
+    }
+</script>

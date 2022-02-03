@@ -1,5 +1,9 @@
-﻿@{
+﻿@model BANKFE.ViewModels.LoginViewModel;
+
+@{
     Layout = null;
+    string message = Model.sweetAlertResult.Message;
+    string status = Model.sweetAlertResult.Status;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -11,8 +15,9 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/twitter-bootstrap-wizard/prettify.css">
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
 </head>
-<body class="bg-pattern">
+<body class="bg-pattern" onload="loadStatus('@message', '@status')">
     <div class="bg-overlay"></div>
     <div class="account-pages my-5 pt-5">
         <div class="container">
@@ -36,6 +41,9 @@
                                 </div>
                                 <div class="mb-2 row justify-content-end pt-2 pb-2">
                                     <a href="/ChangePassword/ForgotPassword" class="link-info ">Forget Password?</a>
+                                </div>
+                                <div class="mb-2 row justify-content-end pt-2 pb-2">
+                                    <a href="#" class="link-info " onclick="swalForgotPassword()">Forgot Password? (Sweet Alert)</a>
                                 </div>
                                 <div class="mb-2 row">
                                     <button class="btn btn-lg btn-primary btn-block" id="signinsubmit" disabled>Login</button>
@@ -62,11 +70,43 @@
     <script src="~/js/pages/form-wizard.init.js"></script>
     <script src="~/js/site.js"></script>
 
-    <script type="text/javascript">
+    <script>
         var usernameValid = false;
         var passwordValid = false;
 
+        async function swalForgotPassword() {
+            //Swal.fire("Selamat!", "Akun anda berhasil diverifikasi!", "success");
+            const { value: email } = await Swal.fire({
+                title: 'Forgot password',
+                input: 'email',
+                inputLabel: 'Send request to the email below',
+                inputPlaceholder: 'Enter your email address'
+            })
+
+            if (email) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/ChangePassword/SendChangePassword?email=' + email,
+                    success: function (data) {
+                        //alert(data);
+                        Swal.fire(data);
+                    },
+                    error: function (data) {
+                        //alert(data.responseText);
+                        Swal.fire(data.responseText);
+                    }
+                });
+            }
+        }
+
+        function loadStatus(message, status) {
+            if (status != "") {
+                Swal.fire(message, "", status)
+            }
+        }
+
         $(document).ready(function () {
+
             $('#inputEmail').on("input", () => {
                 const value = $('#inputEmail').val();
                 usernameValid = value.length >= 6 && value.length < 50;

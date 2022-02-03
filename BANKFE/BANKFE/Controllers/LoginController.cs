@@ -1,5 +1,6 @@
 ﻿using BANKFE.Models;
 using BANKFE.Services;
+using BANKFE.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -15,9 +16,26 @@ namespace BANKFE.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly SweetAlertResultModel sar = new() { Status = "", Message = "" };
+
         public IActionResult Index()
         {
-            return View();
+            LoginViewModel loginViewModel = new() { sweetAlertResult = sar };
+
+            try
+            {
+                string status = HttpContext.Request.Query["status"][0];
+                string message = HttpContext.Request.Query["message"][0];
+
+                loginViewModel.sweetAlertResult.Status = status;
+                loginViewModel.sweetAlertResult.Message = message;
+
+                return View(loginViewModel);
+            }
+            catch (Exception)
+            {
+                return View(loginViewModel);
+            }
         }
 
         private readonly HttpService _httpservices;

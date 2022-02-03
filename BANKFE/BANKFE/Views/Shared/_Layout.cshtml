@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"></script>
 </head>
 
 <!-- TODO: later, please change this timer to 10 minutes -->
-<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: callPopup(60000)">
+<body class="row" style="background-color: #f2f3fa;" onload="JavaScript: callPopup(600000)">
     <partial name="UI/_Sidebar" />
     <div class="col p-0">
         <partial name="UI/_Header" />
@@ -31,8 +32,7 @@
         var timeOut;
         var timer = 0;
 
-        const callPopup = (timePeriod) =>
-        {
+        const callPopup = (timePeriod) => {
             console.log("start counting down....")
             timer = timePeriod;
 

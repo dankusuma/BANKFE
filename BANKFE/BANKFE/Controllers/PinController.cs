@@ -4,7 +4,6 @@ using BANKFE.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace BANKFE.Controllers
 {
@@ -64,11 +63,7 @@ namespace BANKFE.Controllers
         [HttpGet]
         public async Task<string> DoPINStatus(string username)
         {
-            string status = "false";
-
-            status = await _httpservices.GetData(_configuration["APIUrl"] + "/Pin/PINStatus?username=" + username);
-
-            return status;
+            return await _httpservices.GetData(_configuration["APIUrl"] + "/Pin/PINStatus?username=" + username);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BANKFE.Models;
 using BANKFE.Services;
+using BANKFE.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@ namespace BANKFE.Controllers
         private readonly HttpService _httpservices;
         private readonly IConfiguration _configuration;
 
+        private readonly UserController _userController;
         private readonly PinController _pinController;
 
         public HomeController(ILogger<HomeController> logger, HttpService httpservices, IConfiguration configuration)
@@ -26,21 +28,20 @@ namespace BANKFE.Controllers
             _httpservices = httpservices;
             _configuration = configuration;
 
+            _userController = new(httpservices, configuration);
             _pinController = new(httpservices, configuration);
         }
 
         [Authorize]
         public IActionResult Index()
         {
-            var user = User as ClaimsPrincipal;
-            string username = user.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
-            string pinStatus = DoPINStatus(username).Result;
+            var userClaimPrincipal = User as ClaimsPrincipal;
+            string username = userClaimPrincipal.Claims.Where(c => c.Type == ClaimTypes.Name).Select(x => x.Value).FirstOrDefault();
+            var userData = GetUserStatus(username).Result;  // Get PinStatus, IsValidate & IsActive altogether
 
-            ViewData["username"] = username;
-
-            if (pinStatus == "true")
+            if (userData.PinStatus == "true")
             {
-                return View();  /// Redirect to dashboard
+                return View(userData);  /// Redirect to dashboard
             }
             else
             {
@@ -67,9 +68,13 @@ namespace BANKFE.Controllers
         [HttpPost]
         public async Task<string> DoPINStatus(string username)
         {
-            string status = await _pinController.DoPINStatus(username);
+            return await _pinController.DoPINStatus(username);
+        }
 
-            return status;
+        [HttpGet]
+        public async Task<UserViewModel> GetUserStatus(string username)
+        {
+            return await _userController.GetUserStatus(username);
         }
     }
 }
